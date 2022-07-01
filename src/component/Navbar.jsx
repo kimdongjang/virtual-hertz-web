@@ -7,7 +7,7 @@ export default function Navbar() {
   const [menuToggle, setMenuToggle] = useState(false);
 
   return (
-    <nav className='bg-gray-100'>
+    <nav className='bg-gray-100 absoulte'>
       <div className='mx-auto px-4'>
         <div className='flex justify-between'>
           {/* x는 수평방향 조절, y는 수직방향 조절 */}
