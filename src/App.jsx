@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactPageScroller from "react-page-scroller";
 import './index.css';
 import FirstSection from './component/FirstSection';
@@ -9,27 +9,36 @@ import Landing from './component/Landing';
 import { First } from 'react-bootstrap/esm/PageItem';
 
 function App() {
-  const goToPage = (pageNumber) => {
-    this.reactPageScroller.goToPage(pageNumber);
-  };
-  return (
-    <React.Fragment>
-      <Navbar />
-      <ReactPageScroller>
-        <FirstSection />
-         <Landing />
-        <SecondSection />
-        <ThirdSection />
-        {/*
-      
-      <React.Fragment>
-        <ReactPageScroller>
-          <FirstSection />
-          <SecondSection />
-          <ThirdSection /> */}
+  const homeRef = useRef(null);
+  const characterRef = useRef(null);
 
-      </ReactPageScroller>
-    </React.Fragment>
+  function handleScroll(e) {
+    const { innerHeight } = window;
+    const { scrollHeight } = document.body;
+    const myScroll = e.srcElement.scrollingElement.scrollTop;
+    console.log('전체 body 의 높이 : ' + scrollHeight);
+    console.log('전체 스크롤바 높이 : ' + innerHeight);
+    console.log('현재 스크롤 위치 : ' + myScroll);
+
+    // if (ScrollY) {
+    //   setScrollY(window.pageYOffset);
+    // } else {
+    //   setScrollY(window.pageYOffset);
+    // }
+  }
+  useEffect(() => {
+    function scrollListener() {
+      window.addEventListener("scroll", handleScroll);
+    } //  window 에서 스크롤을 감시 시작
+    scrollListener(); // window 에서 스크롤을 감시    
+  });
+  return (
+    <div>
+      <Navbar homeRef={homeRef} characterRef={characterRef} />
+      <FirstSection ref={homeRef} />
+      <SecondSection ref={characterRef}/>
+      {/* <ThirdSection /> */}
+    </div>
 
   );
 }
