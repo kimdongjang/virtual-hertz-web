@@ -11,6 +11,9 @@ const FirstSection = forwardRef((prpos, ref) => {
                     dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.</p>
             </div>
+            <div className="js-hero-movie">
+                <video src="./video/mv_pc.mp4" muted loop playsinline autoPlay />
+            </div>
         </section>
     )
 })
