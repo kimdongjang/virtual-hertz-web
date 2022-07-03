@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ReactPageScroller from "react-page-scroller";
 import './index.css';
-import FirstSection from './component/FirstSection';
+import SectionHome from './component/SectionHome';
 import Navbar from './component/Navbar';
-import SecondSection from './component/SecondSection';
+import SectionIntro from './component/SectionIntro';
 import ThirdSection from './component/ThirdSection';
 import Landing from './component/Landing';
 import { First } from 'react-bootstrap/esm/PageItem';
+import MainContainer from './container/MainContainer';
 
 function App() {
   const homeRef = useRef(null);
@@ -35,8 +36,8 @@ function App() {
   return (
     <div>
       <Navbar homeRef={homeRef} characterRef={characterRef} />
-      <FirstSection ref={homeRef} />
-      <SecondSection ref={characterRef}/>
+      <MainContainer />
+      <SectionIntro ref={characterRef} />
       {/* <ThirdSection /> */}
     </div>
 

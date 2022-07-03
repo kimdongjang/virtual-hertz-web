@@ -1,5 +1,4 @@
 import React from "react";
-import "./section-css.css"
 
 export default function Landing() {
   return (

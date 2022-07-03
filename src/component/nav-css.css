@@ -1,0 +1,27 @@
+.nav-section{
+    position: relative;
+    z-index: 2;
+}
+
+.nav-section__bg{
+    position: absolute;
+    top: 0;
+    right: 0%;
+    width: 40%;
+    height: 10vh;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.nav-section__bg__inner{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-items: center;
+    color: white;
+}
+.nav-section__bg__inner > p{
+    color: white;
+    margin: 5px;
+}

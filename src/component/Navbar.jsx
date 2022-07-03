@@ -2,6 +2,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Link, Route } from "react-router-dom";
+import './nav-css.css'
 
 export default function Navbar(homeRef, characterRef) {
   const [menuToggle, setMenuToggle] = useState(false);
@@ -30,27 +31,33 @@ export default function Navbar(homeRef, characterRef) {
 
 
   return (
-    <nav className="bg-gray-100">
-      <div className='mx-auto px-4'>
+    <nav className="nav-section">
+      <div className="nav-section__bg">
+        <div className="nav-section__bg__inner">
+          <p>HOME</p>
+          <p>INTRODUCE</p>
+          <p>CHARACTER</p>
+        </div>
+
+      </div>
+      {/* <div className='mx-auto px-4'>
         <div className='flex justify-between'>
-          {/* x는 수평방향 조절, y는 수직방향 조절 */}
           <div className='flex space-x-4'>
             <div>
 
               <div className='flex items-center py-5 px-2 text-gray-700 font-bold'>
-                  Home
+                Home
               </div>
             </div>
-            {/* sm크기 일경우엔 안보이고, md크기 부터는 display:flex 적용 */}
             <div className="hidden md:flex items-center space-x-1">
 
               <a className='py-5 px-2 text-gray-700 font-bold hover:text-gray-900'>
-                  Character
-                  </a>
+                Character
+              </a>
 
               <a className='py-5 px-2 text-gray-700 font-bold hover:text-gray-900'>
-                  Contact Us
-                  </a>
+                Contact Us
+              </a>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-1">
@@ -69,7 +76,6 @@ export default function Navbar(homeRef, characterRef) {
         </div>
       </div>
 
-      {/* mobile menu items */}
       <div className={classNames("md:hidden", { hidden: !menuToggle })}>
 
         <a className='block py-2 px-4 text-sm hover:bg-gray-200'>Contact Us</a>
@@ -78,7 +84,7 @@ export default function Navbar(homeRef, characterRef) {
 
         <a className='block py-2 px-4 text-sm bg-yellow-400 hover:bg-yellow-300'>로그인</a>
 
-      </div>
+      </div> */}
     </nav>
   )
   // <div className={styles.navbarWrap}>
