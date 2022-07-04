@@ -1,7 +1,7 @@
-.intro-section {
+.character-section {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,26 +9,39 @@
 }
 
 
-.intro-section__card {
+.character-section__card {
     display: flex;
     flex-direction: row;
     justify-content: center;
     justify-items: center;
-    height: auto;
 }
 
-.intro-section__inner {
+.character-section__inner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 2rem;
 }
 
-.intro-section__img {
+.character-section__img {
     margin: 2rem;    
 }
 
-.intro-section__img > img{
+.character-section__img > img{
     min-width: 30rem;
     max-width: 30rem;
+}
+
+
+.character-section__title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.character-section__title-deco{
+    width: 5px;
+    height: 2.5rem;
+    background: #403b3C;
+    margin-right: 15px;
 }

@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ReactPageScroller from "react-page-scroller";
 import './index.css';
-import SectionHome from './component/SectionHome';
 import Navbar from './component/Navbar';
-import SectionIntro from './component/SectionIntro';
-import ThirdSection from './component/ThirdSection';
-import Landing from './component/Landing';
-import { First } from 'react-bootstrap/esm/PageItem';
 import MainContainer from './container/MainContainer';
+import LoadingContainer from './container/LoadingContainer';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const homeRef = useRef(null);
   const characterRef = useRef(null);
+
+  const isLoading = useSelector(state => (state.isLoadingReducer.isLoading))
 
   function handleScroll(e) {
     const { innerHeight } = window;
@@ -35,10 +33,12 @@ function App() {
   });
   return (
     <div>
-      <Navbar homeRef={homeRef} characterRef={characterRef} />
-      <MainContainer />
-      <SectionIntro ref={characterRef} />
-      {/* <ThirdSection /> */}
+      <LoadingContainer isLoading={isLoading} />
+      {!isLoading ? <div>
+        <Navbar homeRef={homeRef} characterRef={characterRef} />
+        <MainContainer />
+      </div> : null}
+
     </div>
 
   );
