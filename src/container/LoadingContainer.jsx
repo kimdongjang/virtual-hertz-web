@@ -5,7 +5,7 @@ import LoadingSection from "../component/loading/LoadingSection";
 
 const LoadingContainer = (props) => {
     const isLoading = useSelector(state => (state.isLoadingReducer.isLoading))
-    const [seconds, setSeconds] = useState(3);
+    const [seconds, setSeconds] = useState(2);
 
     const {isLoad, setIsLoad} = props;
 

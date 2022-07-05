@@ -24,4 +24,5 @@
 .nav-section__bg__inner > p{
     color: white;
     margin: 5px;
+    cursor: pointer;
 }

@@ -2,10 +2,11 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Link, Route } from "react-router-dom";
-import './nav-css.css'
+import './navbar.css'
 
-export default function Navbar(homeRef, characterRef) {
+export default function Navbar(prop) {
   const [menuToggle, setMenuToggle] = useState(false);
+  const {homeClick, introClick, characterClick} = prop
   // const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장
   // const [ScrollActive, setScrollActive] = useState(false);
   // function handleScroll() {
@@ -34,9 +35,9 @@ export default function Navbar(homeRef, characterRef) {
     <nav className="nav-section">
       <div className="nav-section__bg">
         <div className="nav-section__bg__inner">
-          <p>HOME</p>
-          <p>INTRODUCE</p>
-          <p>CHARACTER</p>
+          <p onClick={homeClick}>HOME</p>
+          <p onClick={introClick}>INTRODUCE</p>
+          <p onClick={characterClick}>CHARACTER</p>
         </div>
 
       </div>

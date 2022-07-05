@@ -6,8 +6,6 @@ import LoadingContainer from './container/LoadingContainer';
 import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
-  const homeRef = useRef(null);
-  const characterRef = useRef(null);
 
   const isLoading = useSelector(state => (state.isLoadingReducer.isLoading))
   const [isLoad, setIsLoad] = useState(false);
@@ -38,10 +36,7 @@ function App() {
   return (
     <div>
       <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
-      {!isLoading ? <div>
-        <Navbar homeRef={homeRef} characterRef={characterRef} />
-        <MainContainer />
-      </div> : null}
+      {!isLoading ? <MainContainer />  : null}
 
     </div>
 
