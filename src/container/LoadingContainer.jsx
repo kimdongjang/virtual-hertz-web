@@ -20,7 +20,7 @@ const LoadingContainer = (props) => {
         return () => {
             if (seconds <= 1) {
                 setIsLoad(true);
-                // dispatch(loadingClose());
+                dispatch(loadingClose());
             }
             clearInterval(countdown);
         };
