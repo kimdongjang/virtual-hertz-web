@@ -1,7 +1,7 @@
 import { useDebugValue } from "react";
 
 export const LOADING_ON = "LOADING_ON";
-export const LOADING_OFF = "LOADING_OFF";
+export const LOADING_CLOSE = "LOADING_OFF";
 export function loadingOn() {
     return {
         type: LOADING_ON,
@@ -9,9 +9,9 @@ export function loadingOn() {
     }
 }
 
-export function loadingOff() {
+export function loadingClose() {
     return {
-        type: LOADING_OFF,
+        type: LOADING_CLOSE,
         isLoading: false,
     }
 }
@@ -22,7 +22,7 @@ const initialState = {
 
 export const isLoadingReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOADING_OFF:
+        case LOADING_CLOSE:
             return {
                 ...state,
                 isLoading: false,

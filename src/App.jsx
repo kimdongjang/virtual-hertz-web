@@ -10,6 +10,7 @@ function App() {
   const characterRef = useRef(null);
 
   const isLoading = useSelector(state => (state.isLoadingReducer.isLoading))
+  const [isLoad, setIsLoad] = useState(false);
 
   function handleScroll(e) {
     const { innerHeight } = window;
@@ -31,9 +32,12 @@ function App() {
     } //  window 에서 스크롤을 감시 시작
     scrollListener(); // window 에서 스크롤을 감시    
   });
+  useEffect(() => {
+    console.log("부모 : " + isLoad);
+  }, [isLoad])
   return (
     <div>
-      <LoadingContainer isLoading={isLoading} />
+      <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
       {!isLoading ? <div>
         <Navbar homeRef={homeRef} characterRef={characterRef} />
         <MainContainer />
