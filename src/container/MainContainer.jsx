@@ -15,10 +15,9 @@ export default function MainContainer() {
      */
     const list = ["HOME", "INTRODUCE", "CHARACTER"];
     scrollRefs.current = list.map((_, i) => scrollRefs.current[i] ?? createRef());
-
-    
+      
     const scrollTo = (index) => () => {
-      scrollRefs.current[index].current.scrollIntoView({ behavior: "smooth" });
+      scrollRefs.current[index]?.current.scrollIntoView({ behavior: "smooth" });
       // setActive(index);
     };
     
@@ -38,42 +37,23 @@ export default function MainContainer() {
       });
     };
     
-    useEffect(()=>{
-      // alert(scrollRefs.current)
-      // alert(scrollRefs)
-      
-      window.addEventListener("scroll", scrollHandler, true);
+    useEffect(()=>{      
+      // window.addEventListener("scroll", scrollHandler, true);
       return () => {
-        window.removeEventListener("scroll", scrollHandler, true);
+        // window.removeEventListener("scroll", scrollHandler, true);
       };
         // alert([...Array(list.length).keys()]);
     },[])
 
-
-    const homeRef = useRef();
-    const introRef = useRef();
-    const characterRef = useRef();
-    const homeClick = () => {
-      homeRef.current?.scrollIntoView({behavior: 'smooth'});
-      console.log("home")
-    }
-    const introClick = () => {
-      introRef.current?.scrollIntoView({behavior: 'smooth'});
-      console.log("intro")
-    }
-    const characterClick = () => {
-      characterRef.current?.scrollIntoView({behavior: 'smooth'});
-    }
-
     return (
         <div>
             <div>
-                <Navbar homeClick={homeClick} introClick={introClick} characterClick={characterClick} />
+                <Navbar list={list} scrollTo={scrollTo}/>
             </div>
             <div className="main-container">
-                <SectionHome  ref={homeRef}  />
-                <SectionIntro  ref={introRef} />
-                <SectionCharacter  ref={characterRef}/>
+                <SectionHome  ref={scrollRefs.current[0]}  />
+                <SectionIntro  ref={scrollRefs.current[1]} />
+                <SectionCharacter  ref={scrollRefs.current[2]}/>
             </div>
         </div>
     )
