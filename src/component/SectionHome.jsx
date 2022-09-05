@@ -6,7 +6,7 @@ const SectionHome = forwardRef((prpos, ref) => {
         <div className="main-section" ref={ref}>
             <div className="main-section__bg">
                 <div className="main-section__bg-video">
-                    <video src="./video/mv_pc.mp4" muted loop playsInline autoPlay />
+                    <video src="./video/eque_pv.mp4" muted loop playsInline autoPlay />
                 </div>
             </div>
             <div className="main-section__inner">

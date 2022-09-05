@@ -43,7 +43,6 @@
     top: 0%; 
     transform: translate(0%, -10%);
     width: 100%;
-    min-width: 200vh;
     height: 100%;
   }
 

@@ -35,8 +35,9 @@ function App() {
   }, [isLoad])
   return (
     <div>
-      <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
-      {!isLoading ? <MainContainer />  : null}
+      <MainContainer />
+      {/* <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
+      {!isLoading ? <MainContainer />  : null} */}
 
     </div>
 
