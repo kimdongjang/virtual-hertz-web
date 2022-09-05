@@ -53,9 +53,7 @@ const SectionCharacter = forwardRef((prpos, ref) => {
                             deserunt mollit anim id est laborum.</p>
                         <div>
                             <ReactAudioPlayer
-                                src="my_audio_file.ogg"
-                                autoPlay
-                                controls
+                                src="./audio/ao.mp3" controls
                             />
                         </div>
                     </CasterSectionInner>
