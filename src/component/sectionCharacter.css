@@ -1,7 +1,7 @@
-.character-section {
+.caster-section {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,39 +9,38 @@
 }
 
 
-.character-section__card {
+.caster-section__card {
     display: flex;
     flex-direction: row;
     justify-content: center;
     justify-items: center;
 }
 
-.character-section__inner {
+.caster-section__inner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 2rem;
 }
 
-.character-section__img {
+.caster-section__img {
     margin: 2rem;    
 }
 
-.character-section__img > img{
+.caster-section__img > img{
     min-width: 30rem;
     max-width: 30rem;
 }
 
 
-.character-section__title {
+.caster-section__title {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.character-section__title-deco{
+.caster-section__title-deco{
     width: 5px;
     height: 2.5rem;
-    background: #403b3C;
     margin-right: 15px;
 }
