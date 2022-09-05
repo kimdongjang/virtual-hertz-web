@@ -1,7 +1,21 @@
 import React, { forwardRef } from "react";
 import './sectionIntro.css'
+import YouTube from 'react-youtube';
 
 const SectionIntro = forwardRef((prpos, ref) => {
+    const equeYoutubeOpt = {
+        height: '270',
+        width: '480',
+        playerVars: {
+        }
+    }
+    const aoYoutubeOpt = {
+        height: '270',
+        width: '480',
+        playerVars: {
+        }
+    }
+
     return (
         <div className="intro-section" ref={ref}>
             <div className="intro-section__bg">
@@ -14,7 +28,8 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             deserunt mollit anim id est laborum.</p>
                     </div>
                     <div className="intro-section__img">
-                        <img src="./images/test2.jpg" />
+                        <YouTube videoId="qRPuQuVAoeA" opts={equeYoutubeOpt} />
+                        {/* <img src="./images/test2.jpg" /> */}
                     </div>
                 </div>
                 <div className="intro-section__card">
@@ -26,7 +41,8 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             deserunt mollit anim id est laborum.</p>
                     </div>
                     <div className="intro-section__img">
-                        <img src="./images/test2.jpg" />
+                        <YouTube videoId="90F6qTII73M" opts={aoYoutubeOpt} />
+                        {/* <img src="./images/test2.jpg" /> */}
                     </div>
                 </div>
 
