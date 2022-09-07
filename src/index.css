@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font0-familiy: '';
+  src: url('import "//static/font/GmarketSansTTF/GmarketSansTTFBold.ttf"').format()
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
