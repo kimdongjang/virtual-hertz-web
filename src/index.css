@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font0-familiy: '';
-  src: url('import "//static/font/GmarketSansTTF/GmarketSansTTFBold.ttf"').format()
+  font0-familiy: 'GmarketSansTTF';
+  src: url('/public/font/GmarketSansTTF/GmarketSansTTFBold.ttf');
 }
 
 body {

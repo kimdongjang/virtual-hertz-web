@@ -14,6 +14,7 @@ const EqueCasterIntroduce = tw.div`
     underline
     decoration-black
     decoration-dashed
+    font-GmarketSansTTF
 `
 
 const CasterSectionInner = tw.div`

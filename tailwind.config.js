@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        GmarketSansTTF: ["GmarketSansTTF"]
+      }
+    },
     screens: {
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
