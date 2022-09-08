@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        GmarketSansTTF: ["GmarketSansTTF"]
+        'GmarketSansTTF': ["GmarketSansTTF", 'GmarketSansMedium']
       }
     },
     screens: {
