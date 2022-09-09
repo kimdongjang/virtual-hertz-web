@@ -9,12 +9,23 @@ const EqueCasterIntroduce = tw.div`
     rotate-3
     bg-[#483440]
     border-yellow-900
-    border-4
-    p-4 m-4 text-white
+    border-4    
     underline
-    decoration-black
+    underline-offset-2
     decoration-dashed
     font-GmarketSansTTF
+    p-4 m-4 text-p-default  
+    decoration-[#291723]
+    text-center
+`
+const EqueCasterIntroduceHighlight = tw.p`
+    inline-block
+    underline
+    underline-offset-2
+    decoration-dashed
+    font-GmarketSansTTF
+    text-p-highlight
+    decoration-[#291723]
 `
 
 const CasterSectionInner = tw.div`
@@ -38,10 +49,13 @@ const SectionCharacter = forwardRef((prpos, ref) => {
                             <div className="caster-section__title-deco" style={{ background: '#FCCAD7' }} />
                             <h2 className="">Eque</h2>
                         </div>
-                        <EqueCasterIntroduce>어느 공장에서 만들어진 스피커!
-                            요상한 모자를 쓴 고양의 마법으로 사람이 되었다!
-                            폐기장 근처 놀이터에서 버스킹을 하다가
-                            길거리 캐스팅을 당해 버츄얼 헤르츠에 합류하게 된다!
+                        <EqueCasterIntroduce>
+                            어느 공장에서 만들어진 스피커!&nbsp;
+                            <EqueCasterIntroduceHighlight>요상한 모자를 쓴 고양의 마법</EqueCasterIntroduceHighlight>으로&nbsp;
+                            <EqueCasterIntroduceHighlight> 사람</EqueCasterIntroduceHighlight>이 되었다!<br />
+                            폐기장 근처 놀이터에서 버스킹을 하다가&nbsp;
+                            <EqueCasterIntroduceHighlight>길거리 캐스팅</EqueCasterIntroduceHighlight>을 당해<br />
+                            <EqueCasterIntroduceHighlight>버츄얼 헤르츠</EqueCasterIntroduceHighlight>에 합류하게 된다!
                         </EqueCasterIntroduce>
                         <div>
                             <ReactAudioPlayer

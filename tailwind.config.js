@@ -6,8 +6,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'GmarketSansTTF': ["GmarketSansTTF", 'GmarketSansMedium']
+        'GmarketSansTTFBold': ["GmarketSansTTFBold", 'sans-serif'],
       }
+    },
+    colors: {
+      'bg-intro': '#fff1f2',
+      'p-white': '#f43f5e',
+      'p-default': '#F9DAE2',
+      'p-highlight': '#F2C58A',
     },
     screens: {
       'sm': '640px',

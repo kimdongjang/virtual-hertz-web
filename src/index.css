@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font0-familiy: 'GmarketSansTTF';
-  src: url('/public/font/GmarketSansTTF/GmarketSansTTFBold.ttf');
+  font-familiy: 'GmarketSansTTFBold';
+  src: url('/public/font/GmarketSansTTF/GmarketSansTTFBold.ttf') format('truetype');
 }
+
 
 body {
   margin: 0;

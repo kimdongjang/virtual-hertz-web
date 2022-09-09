@@ -10,6 +10,7 @@
 
 
 .intro-section__card {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,6 +19,7 @@
 }
 
 .intro-section__inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
