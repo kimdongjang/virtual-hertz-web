@@ -15,12 +15,11 @@ const MainWrapper = tw.div`
 
 export default function MainContainer() {
   const scrollRefs = useRef([]);
-
-
+  let currentScroll = 0;
   /**
    * navigation 리스트 별로 ref 초기화
    */
-  const list = ["HOME", "INTRODUCE", "CHARACTER"];
+  const list = ["HOME", "INTRODUCE", "CASTER"];
   scrollRefs.current = list.map((_, i) => scrollRefs.current[i] ?? createRef());
 
   const scrollTo = (index) => () => {
@@ -44,13 +43,37 @@ export default function MainContainer() {
     });
   };
 
+  const outerDivRef = useRef();
+    useEffect(() => {
+      const wheelHandler = (e) => {
+        e.preventDefault();
+        // 스크롤 행동 구현
+      };
+      const outerDivRefCurrent = outerDivRef.current;
+      outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+      return () => {
+        outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+      };
+    }, []);
+
   useEffect(() => {
-    // window.addEventListener("scroll", scrollHandler, true);
+    function scrollListener() {
+      window.addEventListener("scroll", scrollHandler);
+    } //  window 에서 스크롤을 감시 시작
+    scrollListener(); // window 에서 스크롤을 감시    
     return () => {
-      // window.removeEventListener("scroll", scrollHandler, true);
+      window.removeEventListener("scroll", scrollHandler, true);
     };
     // alert([...Array(list.length).keys()]);
   }, [])
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", scrollHandler, true);
+  //   return () => {
+  //     window.removeEventListener("scroll", scrollHandler, true);
+  //   };
+  //   // alert([...Array(list.length).keys()]);
+  // }, [])
 
   return (
     <div>

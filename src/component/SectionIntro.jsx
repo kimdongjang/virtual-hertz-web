@@ -5,19 +5,51 @@ import YouTube from 'react-youtube';
 
 import tw from "tailwind-styled-components";
 
+const IntroTop = tw.div`
+    flex justify-around bg-intro-top
+    p-8
+    font-GmarketSans text-p-white font-medium text-2xl
+`
+
 const IntroWrpper = tw.div`
-    w-full h-full flex flex-col justify-center bg-bg-intro
+    w-full h-full flex flex-col justify-center 
 `
-const IntroCard = tw.div`
-    flex flex-row justify-center h-auto
+const IntroEqueCard = tw.div`
+    flex flex-row justify-around h-auto bg-eque-intro-card
+    p-32
 `
-const IntroCardInner = tw.div`
+const IntroEqueCardInner = tw.div`
     flex flex-col justify-center h-auto m-8 
+    max-w-4xl
 `
-const IntroCardText = tw.div`
+const IntroEqueCardHeader = tw.div`
     font-GmarketSans font-bold
-    p-4 m-4 text-p-white
+    p-4 m-4
+    text-p-black text-4xl
 `
+const IntroEqueCardText = tw.div`
+    font-GmarketSans font-medium
+    p-4 m-4 text-p-eque
+`
+// =============================================
+
+const IntroAoCardHeader = tw.div`
+    font-GmarketSans font-bold
+    p-4 m-4 text-p-black text-4xl
+`
+const IntroAoCard = tw.div`
+    flex flex-row justify-around h-auto bg-ao-intro-card 
+    p-32
+`
+const IntroAoCardInner = tw.div`
+    flex flex-col justify-center h-auto m-8 
+    max-w-4xl
+`
+const IntroAoCardText = tw.div`
+    font-GmarketSans font-medium
+    p-4 m-4 text-p-ao
+`
+
 
 const SectionIntro = forwardRef((prpos, ref) => {
     const equeYoutubeOpt = {
@@ -35,31 +67,35 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
     return (
         <IntroWrpper ref={ref}>
-            <IntroCard>
-                <IntroCardInner>
-                    <h2 className="">Virtual Hertz</h2>
-                    <IntroCardText>E.Que's 1st Digital Single "I, still"
+            <IntroTop>
+                <h1>Ofiicial Music Video</h1>
+                <div>
+
+                </div>
+            </IntroTop>
+            <IntroEqueCard>
+                <IntroEqueCardInner>
+                    <IntroEqueCardHeader>E.Que - I, still</IntroEqueCardHeader>
+                    <IntroEqueCardText>E.Que's 1st Digital Single "I, still"
                         I still, screaming..
-                    </IntroCardText>
-                </IntroCardInner>
+                    </IntroEqueCardText>
+                </IntroEqueCardInner>
                 <div className="intro-section__img">
                     <YouTube videoId="qRPuQuVAoeA" opts={equeYoutubeOpt} />
                     {/* <img src="./images/test2.jpg" /> */}
                 </div>
-            </IntroCard>
-            <IntroCard>
-                <IntroCardInner>
-                    <h2 className="">Virtual Hertz</h2>
-                    <IntroCardText>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.</IntroCardText>
-                </IntroCardInner>
+            </IntroEqueCard>
+            <IntroAoCard>
+                <IntroAoCardInner>
+                    <IntroAoCardHeader>A.O - Dive To You</IntroAoCardHeader>
+                    <IntroAoCardText>A.O's 1st Digital Single "Dive To You"
+                        DIVE TO YOU!</IntroAoCardText>
+                </IntroAoCardInner>
                 <div className="intro-section__img">
                     <YouTube videoId="90F6qTII73M" opts={aoYoutubeOpt} />
                     {/* <img src="./images/test2.jpg" /> */}
                 </div>
-            </IntroCard>
+            </IntroAoCard>
         </IntroWrpper>
     )
 })

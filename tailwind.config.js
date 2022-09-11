@@ -11,8 +11,13 @@ module.exports = {
       }
     },
     colors: {
-      'bg-intro': '#fff1f2',
-      'p-white': '#f43f5e',
+      'eque-intro-card': '#fff1f2',
+      'ao-intro-card': '#c5d9f1',
+      'intro-top': '#260a09',
+      'p-white': '#FFFFFF',
+      'p-black': '#000000',
+      'p-eque': '#f43f5e',
+      'p-ao': '#87b1e2',
       'p-default': '#F9DAE2',
       'p-highlight': '#F2C58A',
     },
