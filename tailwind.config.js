@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'GmarketSansTTFBold': ["GmarketSansTTFBold"],
+        'GmarketSans': ["GmarketSans", "sans-serif",],
+        'NotoSansKR': ["NotoSansKR", "sans-serif",],
       }
     },
     colors: {

@@ -15,7 +15,7 @@ const IntroCardInner = tw.div`
     flex flex-col justify-center h-auto m-8 
 `
 const IntroCardText = tw.div`
-    font-GmarketSansTTFBold
+    font-GmarketSans font-bold
     p-4 m-4 text-p-white
 `
 

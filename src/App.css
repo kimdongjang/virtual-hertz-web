@@ -1,11 +1,3 @@
-
-@font-face {
-  font-familiy: 'GmarketSansTTFBold';
-  src: local('GmarketSansTTFBold') url('/public/font/GmarketSansTTF/GmarketSansTTFBold.ttf') format('truetype');
-}
-
-
-
 .App {
   text-align: center;
 }
