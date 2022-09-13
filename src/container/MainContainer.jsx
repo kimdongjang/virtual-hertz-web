@@ -1,21 +1,27 @@
 
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { createRef, useCallback, useEffect, useRef, useState } from "react";
 import Navbar from "../component/Navbar";
-import SectionCharacter from "../component/SectionCharacter";
+import SectionCaster from "../component/SectionCaster";
 import SectionHome from "../component/SectionHome";
 import SectionIntro from "../component/SectionIntro";
 import './mainContainer.css'
 
 import tw from "tailwind-styled-components";
+import Dots from "../component/Dots";
 
 
 const MainWrapper = tw.div`
-  relative w-full
+  relative w-full h-full
 `
+const NavbarWrapper = tw.div`
+`
+const ContentWrapper = tw.div`
+flex flex-col overflow-y-auto h-screen 
+`
+const DIVIDER_HEIGHT = 5;
 
 export default function MainContainer() {
   const scrollRefs = useRef([]);
-  let currentScroll = 0;
   /**
    * navigation 리스트 별로 ref 초기화
    */
@@ -27,64 +33,98 @@ export default function MainContainer() {
     // setActive(index);
   };
 
-
-  const scrollHandler = () => {
-    scrollRefs.current.forEach((el, i) => {
-      const rect = el.current.getBoundingClientRect();
-
-      const elemTop = rect.top;
-      const elemBottom = rect.bottom;
-
-      const isVisible = elemTop >= 0 && elemBottom <= window.innerHeight;
-
-      if (isVisible) {
-        // setActive(i);
-      }
-    });
-  };
-
   const outerDivRef = useRef();
-    useEffect(() => {
-      const wheelHandler = (e) => {
-        e.preventDefault();
-        // 스크롤 행동 구현
-      };
-      const outerDivRefCurrent = outerDivRef.current;
-      outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-      return () => {
-        outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-      };
-    }, []);
-
+  const [scrollIndex, setScrollIndex] = useState(1);
   useEffect(() => {
-    function scrollListener() {
-      window.addEventListener("scroll", scrollHandler);
-    } //  window 에서 스크롤을 감시 시작
-    scrollListener(); // window 에서 스크롤을 감시    
-    return () => {
-      window.removeEventListener("scroll", scrollHandler, true);
-    };
-    // alert([...Array(list.length).keys()]);
-  }, [])
+    const wheelHandler = (e) => {
+      e.preventDefault();
+      const { deltaY } = e;
+      const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
+      const pageHeight = window.innerHeight; // 화면 세로길이, 100vh와 같습니다.
+      console.log("scrollTop  : " + scrollTop)
+      console.log(pageHeight)
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", scrollHandler, true);
-  //   return () => {
-  //     window.removeEventListener("scroll", scrollHandler, true);
-  //   };
-  //   // alert([...Array(list.length).keys()]);
-  // }, [])
+      if (deltaY > 0) {
+        // 스크롤 내릴 때
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          //현재 1페이지
+          console.log("현재 1페이지, down");
+          outerDivRef.current.scrollTo({
+            top: pageHeight + DIVIDER_HEIGHT,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(2);
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          //현재 2페이지
+          console.log("현재 2페이지, down");
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(3);
+        } else {
+          // 현재 3페이지
+          console.log("현재 3페이지, down");
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(3);
+        }
+      } else {
+        // 스크롤 올릴 때
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          //현재 1페이지
+          console.log("현재 1페이지, up");
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(1);
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          //현재 2페이지
+          console.log("현재 2페이지, up");
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(1);
+        } else {
+          // 현재 3페이지
+          console.log("현재 3페이지, up");
+          outerDivRef.current.scrollTo({
+            top: pageHeight + DIVIDER_HEIGHT,
+            left: 0,
+            behavior: "smooth",
+          });
+          setScrollIndex(2);
+        }
+      }
+    };
+    const outerDivRefCurrent = outerDivRef.current;
+    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+    return () => {
+      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
+
 
   return (
-    <div>
-      <div>
+    <MainWrapper>
+      <NavbarWrapper>
         <Navbar list={list} scrollTo={scrollTo} />
-      </div>
-      <MainWrapper>
-        <SectionHome ref={scrollRefs.current[0]} />
-        <SectionIntro ref={scrollRefs.current[1]} />
-        <SectionCharacter ref={scrollRefs.current[2]} />
-      </MainWrapper>
-    </div>
+      </NavbarWrapper>
+      <ContentWrapper ref={outerDivRef}>
+        <Dots scrollIndex={scrollIndex} />
+        <SectionHome />
+        <SectionIntro />
+        <SectionCaster />
+      </ContentWrapper >
+    </MainWrapper>
   )
 }

@@ -5,15 +5,16 @@ import YouTube from 'react-youtube';
 
 import tw from "tailwind-styled-components";
 
+const IntroWrpper = tw.div`
+    w-full h-screen flex flex-col justify-center 
+`
+
 const IntroTop = tw.div`
-    flex justify-around bg-intro-top
+    flex justify-around bg-intro-top h-auto
     p-8
     font-GmarketSans text-p-white font-medium text-2xl
 `
 
-const IntroWrpper = tw.div`
-    w-full h-full flex flex-col justify-center 
-`
 const IntroEqueCard = tw.div`
     flex flex-row justify-around h-auto bg-eque-intro-card
     p-32
@@ -33,10 +34,6 @@ const IntroEqueCardText = tw.div`
 `
 // =============================================
 
-const IntroAoCardHeader = tw.div`
-    font-GmarketSans font-bold
-    p-4 m-4 text-p-black text-4xl
-`
 const IntroAoCard = tw.div`
     flex flex-row justify-around h-auto bg-ao-intro-card 
     p-32
@@ -44,6 +41,10 @@ const IntroAoCard = tw.div`
 const IntroAoCardInner = tw.div`
     flex flex-col justify-center h-auto m-8 
     max-w-4xl
+`
+const IntroAoCardHeader = tw.div`
+    font-GmarketSans font-bold
+    p-4 m-4 text-p-black text-4xl
 `
 const IntroAoCardText = tw.div`
     font-GmarketSans font-medium
@@ -67,12 +68,12 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
     return (
         <IntroWrpper ref={ref}>
-            <IntroTop>
+            {/* <IntroTop>
                 <h1>Ofiicial Music Video</h1>
                 <div>
 
                 </div>
-            </IntroTop>
+            </IntroTop> */}
             <IntroEqueCard>
                 <IntroEqueCardInner>
                     <IntroEqueCardHeader>E.Que - I, still</IntroEqueCardHeader>

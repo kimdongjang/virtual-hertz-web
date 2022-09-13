@@ -4,7 +4,7 @@ import ReactAudioPlayer from "react-audio-player";
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    relative w-full
+    flex h-1/2
 `
 
 const EqueCasterIntroduce = tw.div`
@@ -66,7 +66,8 @@ const SectionCasterEque = forwardRef((prpos, ref) => {
                 </CasterSectionInner>
             </div>
         </SectionWrapper>
-    )}
+    )
+}
 )
 
 export default SectionCasterEque;

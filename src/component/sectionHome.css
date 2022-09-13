@@ -3,11 +3,6 @@
   width: 100%;
 }
 
-.main-section__bg{
-  display: block;
-  z-index: -1;
-  overflow: hidden;
-}
 
 .main-section__bg-video > video {
   display: block;

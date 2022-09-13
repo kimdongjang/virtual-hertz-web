@@ -5,8 +5,11 @@ import MainContainer from './container/MainContainer';
 import LoadingContainer from './container/LoadingContainer';
 import { useSelector, useDispatch } from 'react-redux';
 
+/**
+ * 앱 초기 시작점
+ * @returns 
+ */
 function App() {
-
   const isLoading = useSelector(state => (state.isLoadingReducer.isLoading))
   const [isLoad, setIsLoad] = useState(false);
 

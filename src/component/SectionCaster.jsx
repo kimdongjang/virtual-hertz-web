@@ -1,11 +1,14 @@
 import React, { forwardRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import './sectionCharacter.css'
+import './sectionCaster.css'
 
 import tw from "tailwind-styled-components";
 import SectionCasterEque from "./SectionCasterEque";
 import SectionCasterAo from "./SectionCasterAo";
 
+const CasterWrapper = tw.div`
+    w-full h-screen flex flex-col justify-center 
+`
 
 const IntroTop = tw.div`
     flex justify-around bg-intro-top
@@ -24,17 +27,17 @@ const CasterImage = tw.img`
 
 const SectionCharacter = forwardRef((prpos, ref) => {
     return (
-        <div className="caster-section" ref={ref}>
-            <IntroTop>
+        <CasterWrapper ref={ref}>
+            {/* <IntroTop>
                 <h1>Caster</h1>
                 <div>
 
                 </div>
 
-            </IntroTop>
-            <SectionCasterEque/>
-            <SectionCasterAo/>
-        </div >
+            </IntroTop> */}
+            <SectionCasterEque />
+            <SectionCasterAo />
+        </CasterWrapper >
     );
 }
 );

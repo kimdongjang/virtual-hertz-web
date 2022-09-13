@@ -1,14 +1,24 @@
 import React, { forwardRef, useEffect } from "react";
-import "./sectionHome.css"
+
+import tw from "tailwind-styled-components";
+
+const BackMovieWrapper = tw.div`
+   w-full h-screen relative
+`
+
+const BackMovie = tw.div`
+   w-full h-screen
+`
+const Movie = tw.video`
+    h-screen w-full
+`
 
 const SectionHome = forwardRef((prpos, ref) => {
     return (
-        <div className="main-section" ref={ref}>
-            <div className="main-section__bg">
-                <div className="main-section__bg-video">
-                    <video src="./video/eque_pv.mp4" muted loop playsInline autoPlay />
-                </div>
-            </div>
+        <BackMovieWrapper ref={ref}>
+            <BackMovie>
+                <Movie src="./video/eque_pv.mp4" muted loop playsInline autoPlay />
+            </BackMovie>
             {/* <div className="main-section__inner">
                 <h2 className="">Virtual Hertz</h2>
                 <p className="">Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -16,7 +26,7 @@ const SectionHome = forwardRef((prpos, ref) => {
                     dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                     deserunt mollit anim id est laborum.</p>
             </div> */}
-        </div>
+        </BackMovieWrapper>
     )
 })
 export default SectionHome;

@@ -7,7 +7,7 @@ import './navbar.css'
 import tw from "tailwind-styled-components";
 
 const NavbarInner = tw.div`
-cursor-pointer
+  cursor-pointer
 `
 
 export default function Navbar(prop) {
@@ -25,16 +25,16 @@ export default function Navbar(prop) {
     }
   }
 
-  useEffect(() => {
-    function scrollListener() {
-      window.addEventListener("scroll", handleScroll);
-      console.log(ScrollY)
-    } //  window 에서 스크롤을 감시 시작
-    scrollListener(); // window 에서 스크롤을 감시
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    }; //  window 에서 스크롤을 감시를 종료
-  });
+  // useEffect(() => {
+  //   function scrollListener() {
+  //     window.addEventListener("scroll", handleScroll);
+  //     console.log(ScrollY)
+  //   } //  window 에서 스크롤을 감시 시작
+  //   scrollListener(); // window 에서 스크롤을 감시
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   }; //  window 에서 스크롤을 감시를 종료
+  // });
 
 
   return (
@@ -42,7 +42,7 @@ export default function Navbar(prop) {
       <div className="nav-section__bg">
         <div className="nav-section__bg__inner">
           {list.map((item, i) => (
-            <NavbarInner onClick={scrollTo(i)}>{item}</NavbarInner>
+            <NavbarInner onClick={scrollTo(i)} key={i}>{item}</NavbarInner>
           ))}
           {/* <p onClick={homeClick}>HOME</p>
           <p onClick={introClick}>INTRODUCE</p>
