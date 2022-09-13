@@ -9,6 +9,9 @@ import tw from "tailwind-styled-components";
 const NavbarInner = tw.div`
   cursor-pointer
 `
+const NavbarWrapper = tw.div`
+  bg-nav-fill absolute top-0 right-0 h-8 w-full
+`
 
 export default function Navbar(prop) {
   const [menuToggle, setMenuToggle] = useState(false);
@@ -39,7 +42,7 @@ export default function Navbar(prop) {
 
   return (
     <nav className="nav-section">
-      <div className="nav-section__bg">
+      <NavbarWrapper>
         <div className="nav-section__bg__inner">
           {list.map((item, i) => (
             <NavbarInner onClick={scrollTo(i)} key={i}>{item}</NavbarInner>
@@ -49,7 +52,7 @@ export default function Navbar(prop) {
           <p onClick={characterClick}>CHARACTER</p> */}
         </div>
 
-      </div>
+      </NavbarWrapper>
 
     </nav>
   )

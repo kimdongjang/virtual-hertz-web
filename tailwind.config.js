@@ -20,6 +20,7 @@ module.exports = {
       'p-ao': '#87b1e2',
       'p-default': '#F9DAE2',
       'p-highlight': '#F2C58A',
+      'nav-fill': '#212729',
     },
     screens: {
       'sm': '640px',
