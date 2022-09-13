@@ -12,3 +12,7 @@ https://velog.io/@dami/React-Top-Button-%EB%A7%8C%EB%93%A4%EA%B8%B0-Custom-Hook-
 
 ## scroll smoode move
 https://codingbroker.tistory.com/128
+
+## text none select
+https://blogpack.tistory.com/864?category=804108
+
