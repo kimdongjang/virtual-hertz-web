@@ -3,11 +3,11 @@ import React, { forwardRef, useEffect } from "react";
 import tw from "tailwind-styled-components";
 
 const BackMovieWrapper = tw.div`
-   w-full h-screen relative
+   w-full h-screen flex flex-col
 `
 
 const BackMovie = tw.div`
-   w-full h-screen
+   
 `
 const Movie = tw.video`
     h-screen w-full

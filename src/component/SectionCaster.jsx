@@ -7,11 +7,11 @@ import SectionCasterEque from "./SectionCasterEque";
 import SectionCasterAo from "./SectionCasterAo";
 
 const CasterWrapper = tw.div`
-    w-full h-screen flex flex-col justify-center 
+    w-full flex flex-col
 `
 
 const IntroTop = tw.div`
-    flex justify-around bg-intro-top
+    flex justify-around bg-intro-top h-4
     p-8
     font-GmarketSans text-p-white font-medium text-2xl
 `
@@ -28,13 +28,13 @@ const CasterImage = tw.img`
 const SectionCharacter = forwardRef((prpos, ref) => {
     return (
         <CasterWrapper ref={ref}>
-            {/* <IntroTop>
+            <IntroTop>
                 <h1>Caster</h1>
                 <div>
 
                 </div>
 
-            </IntroTop> */}
+            </IntroTop>
             <SectionCasterEque />
             <SectionCasterAo />
         </CasterWrapper >

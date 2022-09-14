@@ -6,11 +6,28 @@ import './navbar.css'
 
 import tw from "tailwind-styled-components";
 
-const NavbarInner = tw.div`
-  cursor-pointer
-`
 const NavbarWrapper = tw.div`
-  bg-nav-fill absolute top-0 right-0 h-8 w-full
+  absolute top-0 right-0 h-auto w-full
+  bg-nav-fill 
+  flex justify-between
+`
+const NavbarLogo = tw.div`
+  cursor-pointer
+  text-p-white
+  pl-8 pt-2
+`
+
+const NavbarInner = tw.div`
+  flex  pr-64
+`
+
+const NavbarText = tw.div`
+  cursor-pointer text-p-white
+  py-2 px-8
+`
+const NavbarTextHighlight = tw.div`
+  cursor-pointer text-nav-highlight
+  py-2 px-8
 `
 
 export default function Navbar(prop) {
@@ -43,14 +60,17 @@ export default function Navbar(prop) {
   return (
     <nav className="nav-section">
       <NavbarWrapper>
-        <div className="nav-section__bg__inner">
+        <NavbarLogo>
+          Virtual Hertz
+        </NavbarLogo>
+        <NavbarInner>
           {list.map((item, i) => (
-            <NavbarInner onClick={scrollTo(i)} key={i}>{item}</NavbarInner>
+            <NavbarText onClick={scrollTo(i)} key={i}>{item}</NavbarText>
           ))}
           {/* <p onClick={homeClick}>HOME</p>
           <p onClick={introClick}>INTRODUCE</p>
           <p onClick={characterClick}>CHARACTER</p> */}
-        </div>
+        </NavbarInner>
 
       </NavbarWrapper>
 

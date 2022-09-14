@@ -7,12 +7,12 @@ module.exports = {
     extend: {
       fontFamily: {
         'GmarketSans': ["GmarketSans", "sans-serif",],
-        'NotoSansKR': ["NotoSansKR", "sans-serif",],
+        'NotoSansKR': ["Noto Sans KR", "sans-serif",],
       }
     },
     colors: {
       'eque-intro-card': '#fff1f2',
-      'ao-intro-card': '#c5d9f1',
+      'ao-intro-card': '#e5eef9',
       'intro-top': '#260a09',
       'p-white': '#FFFFFF',
       'p-black': '#000000',
@@ -20,6 +20,7 @@ module.exports = {
       'p-ao': '#87b1e2',
       'p-default': '#F9DAE2',
       'p-highlight': '#F2C58A',
+      'nav-highlight': '#C3064C',
       'nav-fill': '#212729',
     },
     screens: {

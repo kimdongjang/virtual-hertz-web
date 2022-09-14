@@ -11,7 +11,7 @@ import Dots from "../component/Dots";
 
 
 const MainWrapper = tw.div`
-  relative w-full h-full
+  relative w-full flex flex-col
 `
 const NavbarWrapper = tw.div`
 `
@@ -25,7 +25,7 @@ export default function MainContainer() {
   /**
    * navigation 리스트 별로 ref 초기화
    */
-  const list = ["HOME", "INTRODUCE", "CASTER"];
+  const list = ["MAIN", "INTRODUCE", "CASTER"];
   scrollRefs.current = list.map((_, i) => scrollRefs.current[i] ?? createRef());
 
   const scrollTo = (index) => () => {

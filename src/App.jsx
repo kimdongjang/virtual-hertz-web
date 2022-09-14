@@ -36,14 +36,11 @@ function App() {
   useEffect(() => {
     console.log("부모 : " + isLoad);
   }, [isLoad])
-  return (
-    <div>
-      <MainContainer />
-      {/* <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
-      {!isLoading ? <MainContainer />  : null} */}
-
-    </div>
-
+  return (<>
+    <MainContainer />
+    {/* <LoadingContainer isLoading={isLoading} isLoad={isLoad} setIsLoad={setIsLoad} />
+    {!isLoading ? <MainContainer />  : null} */}
+  </>
   );
 }
 
