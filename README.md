@@ -21,3 +21,8 @@ https://blogpack.tistory.com/864?category=804108
 ## scroll content fade in
 
 https://shylog.com/react-custom-hooks-scroll-animation-fadein/
+
+## throttle scroll
+https://velog.io/@cjhlsb/React-throttle-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-scroll-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B5%9C%EC%A0%81%ED%99%94
+https://velog.io/@dosilv/React-Debounce-Throttle
+https://developer-talk.tistory.com/263
