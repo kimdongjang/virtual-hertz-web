@@ -32,9 +32,15 @@ const SectionWrapper = tw.div`
 const CasterSectionInner = tw.div`
     flex flex-col justify-center 
 `
+const CasterSectionHeader = tw.div`
+    flex justify-center items-center
+    font-NotoSansKR w-16 h-8
+    text-white bg-red-200 rounded-md
+    hover:bg-red-400 focus:outline-none focus:shadow-outline    
+`
 
 const CasterImage = tw.img`
-    p-16
+    p-16 h-full
 `
 const CasterInnerText = tw.p`
     font-NotoSansKR font-medium text-sm leading-tight
@@ -53,7 +59,7 @@ const SectionCasterEque = forwardRef((prpos, ref) => {
             <CasterSectionInner>
                 <div className="caster-section__title">
                     <div className="caster-section__title-deco" style={{ background: '#FCCAD7' }} />
-                    <div className="font-NotoSansKR">Eque</div>
+                    <CasterSectionHeader>Eque</CasterSectionHeader>
                 </div>
                 <CasterInnerText>
                     첫 번째 프로젝트! 이큐 에요! ٩(๑˙꒳˙๑)۶♥ / 매주 수,금,토,일 오후 8시 20분 뱅온♥ / 공지는 트위터에서! (@VHZ_EQue) / Contact Us - v.hzent@gmail.com

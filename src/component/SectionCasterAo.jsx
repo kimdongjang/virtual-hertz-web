@@ -11,6 +11,13 @@ const CasterSectionInner = tw.div`
     flex flex-col justify-center 
 `
 
+const CasterSectionHeader = tw.div`
+    flex justify-center items-center
+    font-NotoSansKR w-16 h-8
+    text-white bg-blue-200 rounded-md
+    hover:bg-blue-400 focus:outline-none focus:shadow-outline    
+`
+
 const CasterImage = tw.img`
     p-16 h-full
 `
@@ -31,7 +38,7 @@ const SectionCasterAo = forwardRef((prpos, ref) => {
             <CasterSectionInner>
                 <div className="caster-section__title">
                     <div className="caster-section__title-deco" style={{ background: '#CCDFF4' }} />
-                    <h2 className="">AO</h2>
+                    <CasterSectionHeader>AO</CasterSectionHeader>
                 </div>
                 <CasterInnerText>필승! 아오임당~ 🐟︎
                     Twitch - http://twitch.tv/vhz_ao ⚓️ 회사-

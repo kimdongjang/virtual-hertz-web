@@ -58,9 +58,11 @@ export default function MainContainer() {
       if (deltaY > 0) {
         if (cur < scrollRefs.current.length - 1) {
           scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
+          setScrollIndex(cur)
         }
         else {
           scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView({ behavior: "smooth" });
+          setScrollIndex(cur)
         }
 
         // // 스크롤 내릴 때
@@ -87,6 +89,7 @@ export default function MainContainer() {
         // 스크롤 올릴 때
         if (cur > 0) {
           scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
+          setScrollIndex(cur)
         }
         // if (scrollTop >= 0 && scrollTop < pageHeight + 1) {
         //   //현재 1페이지
