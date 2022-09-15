@@ -28,13 +28,13 @@ const CasterImage = tw.img`
 const SectionCharacter = forwardRef((prpos, ref) => {
     return (
         <CasterWrapper ref={ref}>
-            <IntroTop>
+            {/* <IntroTop>
                 <h1>Caster</h1>
                 <div>
 
                 </div>
 
-            </IntroTop>
+            </IntroTop> */}
             <SectionCasterEque />
             <SectionCasterAo />
         </CasterWrapper >

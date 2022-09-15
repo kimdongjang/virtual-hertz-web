@@ -7,7 +7,7 @@ import { BsTwitter } from "react-icons/bs"
 import tw from "tailwind-styled-components";
 
 const IntroWrpper = tw.div`
-    w-full h-screen flex flex-col
+    h-screen flex flex-col
 `
 
 const IntroTop = tw.div`
@@ -80,12 +80,12 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
     return (
         <IntroWrpper ref={ref}>
-            <IntroTop>
+            {/* <IntroTop>
                 <h1>Ofiicial Music Video</h1>
                 <div>
 
                 </div>
-            </IntroTop>
+            </IntroTop> */}
             <IntroEqueCard>
                 <IntroEqueCardInner>
                     <IntroEqueCardHeader>E.Que - I, still</IntroEqueCardHeader>

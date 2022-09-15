@@ -22,29 +22,21 @@ const CasterInnerText = tw.p`
 
 
 
-const SectionCasterAo = forwardRef((prpos, ref) => {
+const SectionCasterNina = forwardRef((prpos, ref) => {
     return (
         <SectionWrapper ref={ref}>
             <div>
-                <CasterImage src="./images/caster/ao2.jpg" />
+                <CasterImage src="./images/caster/nina2.jpg" />
             </div>
             <CasterSectionInner>
                 <div className="caster-section__title">
                     <div className="caster-section__title-deco" style={{ background: '#CCDFF4' }} />
-                    <h2 className="">AO</h2>
+                    <h2 className="">Nina</h2>
                 </div>
-                <CasterInnerText>필승! 아오임당~ 🐟︎
-                    Twitch - http://twitch.tv/vhz_ao ⚓️ 회사-
-                    @VHZ_ent
-                    ⚓️
-                    먀먀-
-                    @stu_diho
-                    ⚓️
+                <CasterInnerText> ???
                 </CasterInnerText>
                 <div>
-                    <ReactAudioPlayer
-                        src="./audio/ao.mp3" controls
-                    />
+                    {/* <ReactAudioPlayer src="./audio/ao.mp3" controls /> */}
                 </div>
             </CasterSectionInner>
         </SectionWrapper>
@@ -52,4 +44,4 @@ const SectionCasterAo = forwardRef((prpos, ref) => {
 }
 )
 
-export default SectionCasterAo;
+export default SectionCasterNina;
