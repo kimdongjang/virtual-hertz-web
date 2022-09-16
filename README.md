@@ -26,3 +26,6 @@ https://shylog.com/react-custom-hooks-scroll-animation-fadein/
 https://velog.io/@cjhlsb/React-throttle-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-scroll-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B5%9C%EC%A0%81%ED%99%94
 https://velog.io/@dosilv/React-Debounce-Throttle
 https://developer-talk.tistory.com/263
+
+## scroll nav change
+https://codesandbox.io/s/react-scroll-nav-to-forked-bs37s0?file=/src/App.js
