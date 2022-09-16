@@ -32,3 +32,7 @@ https://codesandbox.io/s/react-scroll-nav-to-forked-bs37s0?file=/src/App.js
 
 ## css Layout 중요
 https://csslayout.io/corner-ribbon/
+
+## tailwindcss add custom style(official)
+https://tailwindcss.com/docs/adding-custom-styles
+
