@@ -1,4 +1,5 @@
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"
+
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Link, Route } from "react-router-dom";
@@ -6,24 +7,25 @@ import './navbar.css'
 
 import tw from "tailwind-styled-components";
 
-const NavbarWrapper = tw.div`
-  absolute top-0 right-0 h-auto w-full
-  bg-nav-fill 
-  flex justify-between
+const NavbarWrapper = tw.nav`
+  absolute top-0 right-0 h-auto w-full   
+  flex items-center
+  bg-[#677a80]
 `
 const NavbarLogo = tw.div`
-  cursor-pointer
-  text-p-white
-  pl-8 pt-2
+  w-full
+`
+const NavbarMenu = tw.div`
+  p-2 lg:hidden xl:hidden 
 `
 
 const NavbarInner = tw.div`
-  flex  pr-64
+  flex md: hidden
 `
 
 const NavbarText = tw.div`
-  cursor-pointer text-p-white
-  py-2 px-8
+  cursor-pointer text-[#FFFFFF]
+  py-2 px-8 text-sm
 `
 const NavbarTextHighlight = tw.div`
   cursor-pointer text-nav-highlight
@@ -45,24 +47,32 @@ export default function Navbar(prop) {
     }
   }
 
-  // useEffect(() => {
-  //   function scrollListener() {
-  //     window.addEventListener("scroll", handleScroll);
-  //     console.log(ScrollY)
-  //   } //  window 에서 스크롤을 감시 시작
-  //   scrollListener(); // window 에서 스크롤을 감시
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   }; //  window 에서 스크롤을 감시를 종료
-  // });
-
 
   return (
     <nav className="nav-section">
       <NavbarWrapper>
         <NavbarLogo>
-          Virtual Hertz
+          <img src="./images/background/logo.png" className="lg:max-w-lg w-32 cursor-pointer" />
         </NavbarLogo>
+        <NavbarMenu>
+          {!menuToggle ? (
+            <AiOutlineMenu onClick={() => setMenuToggle(!menuToggle)}
+              className="hover:cursor-pointer" size={30} color="#FFFFFF">
+            </AiOutlineMenu>
+          ) : (
+            <div>
+              <AiOutlineClose onClick={() => setMenuToggle(!menuToggle)}
+                className="hover:cursor-pointer" size={30} color="#FFFFFF" >
+              </AiOutlineClose>
+              <div className="bg-[#677a80] absolute right-0">
+                {list.map((item, i) => (
+                  <NavbarText onClick={scrollTo(i)} key={i}>{item}</NavbarText>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </NavbarMenu>
         <NavbarInner>
           {list.map((item, i) => (
             <NavbarText onClick={scrollTo(i)} key={i}>{item}</NavbarText>
