@@ -20,12 +20,13 @@ const NavbarMenu = tw.div`
 `
 
 const NavbarInner = tw.div`
-  flex md: hidden
+  flex hidden lg:flex
 `
 
 const NavbarText = tw.div`
   cursor-pointer text-[#FFFFFF]
   py-2 px-8 text-sm
+  lg:text-lg
 `
 const NavbarTextHighlight = tw.div`
   cursor-pointer text-nav-highlight
@@ -52,7 +53,7 @@ export default function Navbar(prop) {
     <nav className="nav-section">
       <NavbarWrapper>
         <NavbarLogo>
-          <img src="./images/background/logo.png" className="lg:max-w-lg w-32 cursor-pointer" />
+          <img src="./images/background/logo.png" className="max-w-lg w-32 cursor-pointer" />
         </NavbarLogo>
         <NavbarMenu>
           {!menuToggle ? (
