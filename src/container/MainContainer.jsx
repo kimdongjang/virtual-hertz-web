@@ -11,6 +11,7 @@ import Dots from "../component/Dots";
 import SectionCasterEque from "../component/SectionCasterEque";
 import SectionCasterAo from "../component/SectionCasterAo";
 import SectionCasterNina from "../component/SectionCasterNina";
+import useWindowResize from "../hooks/useWindowResize";
 
 
 const MainWrapper = tw.div`
@@ -41,6 +42,7 @@ export default function MainContainer() {
   const [currentScroll, setCurrentScroll] = useState(0);
 
   let cur = 0;
+
 
   useEffect(() => {
     const wheelHandler = (e) => {

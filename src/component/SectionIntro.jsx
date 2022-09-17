@@ -1,13 +1,14 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import YouTube from 'react-youtube';
 
 import { BsTwitter } from "react-icons/bs"
 
 
 import tw from "tailwind-styled-components";
+import useWindowResize from "../hooks/useWindowResize";
 
 const IntroWrpper = tw.div`
-    flex flex-col h-screen
+    flex flex-col h-screen 
 `
 
 const IntroTop = tw.div`
@@ -16,34 +17,45 @@ const IntroTop = tw.div`
     font-GmarketSans text-p-white font-medium text-2xl
 `
 
-const IntroEqueCard = tw.div`
+const IntroCard = tw.div`
     h-1/2
-    flex flex-row justify-around  bg-eque-intro-card
+    flex flex-col lg:flex-row lg:items-center    
     pl-16 pr-16
+    lg:pl-64 lg:pr-64
+
+    bg-eque-intro-card
    
 `
-const IntroEqueCardInner = tw.div`
-    flex flex-col h-auto justify-center
-    max-w-xl    
+const IntroInner = tw.div`
+    flex-col w-full
 `
-const IntroEqueCardHeader = tw.div`
+const IntroInnerHeader = tw.div`
     py-4
     font-GmarketSans font-bold    
-    text-p-black text-4xl
+    text-p-black text-2xl
+    lg:text-4xl
     underline underline-offset-8 decoration-[#f43f5e]
+    
 `
-const IntroEqueCardText = tw.div`    
-    font-GmarketSans font-medium text-2xl
-    text-p-eque
+const IntroInnerMiddleText = tw.div`    
+    font-GmarketSans font-medium
+    text-xl
+    max-w-md lg:max-w-xl xl:max-w-xl
 `
-const IntroEqueCardMovie = tw.div`
-    flex items-center justify-center
+
+const IntroInnerText = tw.p`
+    font-NotoSansKR font-medium text-md leading-tight    
+`
+
+const IntroCardMovie = tw.div`
+    flex items-center
+    justify-center
 `
 // =============================================
 
 const IntroAoCard = tw.div`
     h-1/2
-    flex flex-row justify-around bg-ao-intro-card 
+    flex flex-col lg:flex-row bg-eque-intro-card
     pl-16 pr-16
 `
 const IntroAoCardInner = tw.div`
@@ -60,29 +72,65 @@ const IntroAoCardText = tw.div`
     font-GmarketSans font-medium text-2xl
     text-p-ao
 `
-const IntroAoCardMovie = tw.div`
-    flex items-center justify-center
-`
 
-const IntroCardInnerText = tw.p`
-    font-NotoSansKR font-medium text-sm leading-tight
-    
-`
 
 
 const SectionIntro = forwardRef((prpos, ref) => {
-    const equeYoutubeOpt = {
-        height: '270',
-        width: '480',
-        playerVars: {
+    const [windowHeight, setWindowHeight] = useState(270);
+    const [windowWidth, setWindowWidth] = useState(480);
+    const [youtubeOption, setYoutubeOption] = useState({});
+    /**
+     * window Resize Hooks
+     */
+    const windowSizeObject = useWindowResize();
+    useEffect(() => {
+        let height = 270;
+        let width = 480;
+        // sm
+        if (windowSizeObject.width < 640) {
+
+        } // md
+        else if (640 <= windowSizeObject.width && windowSizeObject.width < 768) {
+            height = 300;
+            width = 600;
+
+        } // lg
+        else if (768 <= windowSizeObject.width && windowSizeObject.width < 1024) {
+            height = 300;
+            width = 800;
+
+        } // xl
+        else if (1024 <= windowSizeObject.width && windowSizeObject.width < 1280) {
+            height = 350;
+            width = 450;
+
+        } // 2xl
+        else if (1280 <= windowSizeObject.width && windowSizeObject.width < 1536) {
+            height = 400;
+            width = 600;
+
+        } // 4xl
+        else if (1536 <= windowSizeObject.width) {
+            height = 500;
+            width = 800;
         }
-    }
-    const aoYoutubeOpt = {
-        height: '270',
-        width: '480',
-        playerVars: {
-        }
-    }
+        console.log("windowSizeObject.width :: " + windowSizeObject.width)
+        console.log(width)
+        setWindowWidth(width);
+        setWindowHeight(height);
+
+    }, [windowSizeObject])
+    useEffect(() => {
+        setYoutubeOption({
+            height: windowHeight,
+            width: windowWidth,
+            playerVars: {
+            }
+        });
+
+    }, [windowWidth]);
+
+
 
     return (
         <IntroWrpper ref={ref}>
@@ -92,14 +140,14 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
                 </div>
             </IntroTop> */}
-            <div className="h-screen">
-                <IntroEqueCard>
-                    <IntroEqueCardInner>
-                        <IntroEqueCardHeader>E.Que - I, still</IntroEqueCardHeader>
-                        <IntroEqueCardText>E.Que's 1st Digital Single "I, still"
+            <div className="h-screen py-16">
+                <IntroCard>
+                    <IntroInner>
+                        <IntroInnerHeader>E.Que - I, still</IntroInnerHeader>
+                        <IntroInnerMiddleText>E.Que's 1st Digital Single "I, still"
                             I still, screaming..
-                        </IntroEqueCardText>
-                        <IntroCardInnerText>
+                        </IntroInnerMiddleText>
+                        <IntroInnerText>
                             Music by<br />
                             [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
                             Regle&nbsp;
@@ -114,19 +162,18 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             Directed by<br />
                             송경민
 
-                        </IntroCardInnerText>
-                    </IntroEqueCardInner>
-                    <IntroEqueCardMovie>
-                        <YouTube videoId="qRPuQuVAoeA" opts={equeYoutubeOpt} />
-                        {/* <img src="./images/test2.jpg" /> */}
-                    </IntroEqueCardMovie>
-                </IntroEqueCard>
-                <IntroAoCard>
-                    <IntroAoCardInner>
-                        <IntroAoCardHeader>A.O - Dive To You</IntroAoCardHeader>
-                        <IntroAoCardText>A.O's 1st Digital Single "Dive To You"
-                            DIVE TO YOU!</IntroAoCardText>
-                        <IntroCardInnerText>
+                        </IntroInnerText>
+                    </IntroInner>
+                    <IntroCardMovie>
+                        <YouTube videoId="qRPuQuVAoeA" opts={youtubeOption} />
+                    </IntroCardMovie>
+                </IntroCard>
+                <IntroCard>
+                    <IntroInner>
+                        <IntroInnerHeader>A.O - Dive To You</IntroInnerHeader>
+                        <IntroInnerMiddleText>A.O's 1st Digital Single "Dive To You"
+                            DIVE TO YOU!</IntroInnerMiddleText>
+                        <IntroInnerText>
                             Music by<br />
                             [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
                             Regle&nbsp;
@@ -141,13 +188,12 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             Directed by<br />
                             송경민
 
-                        </IntroCardInnerText>
-                    </IntroAoCardInner>
-                    <IntroAoCardMovie>
-                        <YouTube videoId="90F6qTII73M" opts={aoYoutubeOpt} />
-                        {/* <img src="./images/test2.jpg" /> */}
-                    </IntroAoCardMovie>
-                </IntroAoCard>
+                        </IntroInnerText>
+                    </IntroInner>
+                    <IntroCardMovie>
+                        <YouTube videoId="90F6qTII73M" opts={youtubeOption} />
+                    </IntroCardMovie>
+                </IntroCard>
             </div>
         </IntroWrpper >
     )

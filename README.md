@@ -23,16 +23,23 @@ https://blogpack.tistory.com/864?category=804108
 https://shylog.com/react-custom-hooks-scroll-animation-fadein/
 
 ## throttle scroll
+
 https://velog.io/@cjhlsb/React-throttle-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-scroll-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B5%9C%EC%A0%81%ED%99%94
 https://velog.io/@dosilv/React-Debounce-Throttle
 https://developer-talk.tistory.com/263
 
 ## scroll nav change
+
 https://codesandbox.io/s/react-scroll-nav-to-forked-bs37s0?file=/src/App.js
 
 ## css Layout 중요
+
 https://csslayout.io/corner-ribbon/
 
 ## tailwindcss add custom style(official)
+
 https://tailwindcss.com/docs/adding-custom-styles
 
+## video size responsive
+
+https://code-study.tistory.com/35
