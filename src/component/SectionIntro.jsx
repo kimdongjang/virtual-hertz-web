@@ -1,14 +1,13 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import YouTube from 'react-youtube';
-
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { BsTwitter } from "react-icons/bs"
 
 
 import tw from "tailwind-styled-components";
 import useWindowResize from "../hooks/useWindowResize";
+import ReactPlayer from "react-player";
 
 const IntroWrpper = tw.div`
-    flex flex-col h-screen 
+    flex flex-col h-screen justify-evenly
 `
 
 const IntroTop = tw.div`
@@ -21,7 +20,7 @@ const IntroCard = tw.div`
     h-1/2
     flex flex-col lg:flex-row lg:items-center    
     pl-16 pr-16
-    lg:pl-64 lg:pr-64
+    py-8
 
     bg-eque-intro-card
    
@@ -32,24 +31,28 @@ const IntroInner = tw.div`
 const IntroInnerHeader = tw.div`
     py-4
     font-GmarketSans font-bold    
-    text-p-black text-2xl
+    text-p-black text-xl
     lg:text-4xl
     underline underline-offset-8 decoration-[#f43f5e]
     
 `
 const IntroInnerMiddleText = tw.div`    
     font-GmarketSans font-medium
-    text-xl
-    max-w-md lg:max-w-xl xl:max-w-xl
+    text-md lg:text-2xl
+    max-w-md lg:max-w-2xl xl:max-w-2xl
 `
 
 const IntroInnerText = tw.p`
-    font-NotoSansKR font-medium text-md leading-tight    
+    font-NotoSansKR font-medium
+     text-sm lg:text-lg
+     leading-tight    
 `
 
 const IntroCardMovie = tw.div`
     flex items-center
     justify-center
+    w-full h-full
+    py-8 lg:py-16 lg:px-8
 `
 // =============================================
 
@@ -76,54 +79,56 @@ const IntroAoCardText = tw.div`
 
 
 const SectionIntro = forwardRef((prpos, ref) => {
-    const [windowHeight, setWindowHeight] = useState(270);
-    const [windowWidth, setWindowWidth] = useState(480);
+    const [windowHeight, setWindowHeight] = useState();
+    const [windowWidth, setWindowWidth] = useState();
     const [youtubeOption, setYoutubeOption] = useState({});
+    const videoRef = useRef();
     /**
      * window Resize Hooks
      */
     const windowSizeObject = useWindowResize();
     useEffect(() => {
-        let height = 270;
-        let width = 480;
-        // sm
-        if (windowSizeObject.width < 640) {
+        // let height = 270;
+        // let width = 480;
+        // // sm
+        // if (windowSizeObject.width < 640) {
 
-        } // md
-        else if (640 <= windowSizeObject.width && windowSizeObject.width < 768) {
-            height = 300;
-            width = 600;
+        // } // md
+        // else if (640 <= windowSizeObject.width && windowSizeObject.width < 768) {
+        //     height = 300;
+        //     width = 600;
 
-        } // lg
-        else if (768 <= windowSizeObject.width && windowSizeObject.width < 1024) {
-            height = 300;
-            width = 800;
+        // } // lg
+        // else if (768 <= windowSizeObject.width && windowSizeObject.width < 1024) {
+        //     height = 300;
+        //     width = 800;
 
-        } // xl
-        else if (1024 <= windowSizeObject.width && windowSizeObject.width < 1280) {
-            height = 350;
-            width = 450;
+        // } // xl
+        // else if (1024 <= windowSizeObject.width && windowSizeObject.width < 1280) {
+        //     height = 350;
+        //     width = 450;
 
-        } // 2xl
-        else if (1280 <= windowSizeObject.width && windowSizeObject.width < 1536) {
-            height = 400;
-            width = 600;
+        // } // 2xl
+        // else if (1280 <= windowSizeObject.width && windowSizeObject.width < 1536) {
+        //     height = 400;
+        //     width = 600;
 
-        } // 4xl
-        else if (1536 <= windowSizeObject.width) {
-            height = 500;
-            width = 800;
-        }
-        console.log("windowSizeObject.width :: " + windowSizeObject.width)
-        console.log(width)
-        setWindowWidth(width);
-        setWindowHeight(height);
+        // } // 4xl
+        // else if (1536 <= windowSizeObject.width) {
+        //     height = 500;
+        //     width = 800;
+        // }
+        // console.log("windowSizeObject.width :: " + windowSizeObject.width)
+        // console.log(width)
+        // setWindowWidth(width);
+        // setWindowHeight(height);
+        console.log(videoRef.width)
+        setWindowHeight(videoRef.width * 0.5625);
 
     }, [windowSizeObject])
     useEffect(() => {
         setYoutubeOption({
             height: windowHeight,
-            width: windowWidth,
             playerVars: {
             }
         });
@@ -140,7 +145,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
                 </div>
             </IntroTop> */}
-            <div className="h-screen py-16">
+            <div className="h-screen">
                 <IntroCard>
                     <IntroInner>
                         <IntroInnerHeader>E.Que - I, still</IntroInnerHeader>
@@ -165,7 +170,8 @@ const SectionIntro = forwardRef((prpos, ref) => {
                         </IntroInnerText>
                     </IntroInner>
                     <IntroCardMovie>
-                        <YouTube videoId="qRPuQuVAoeA" opts={youtubeOption} />
+                        <ReactPlayer url='https://www.youtube.com/watch?v=qRPuQuVAoeA'
+                            width={'100%'} height={'100%'} />
                     </IntroCardMovie>
                 </IntroCard>
                 <IntroCard>
@@ -191,7 +197,8 @@ const SectionIntro = forwardRef((prpos, ref) => {
                         </IntroInnerText>
                     </IntroInner>
                     <IntroCardMovie>
-                        <YouTube videoId="90F6qTII73M" opts={youtubeOption} />
+                        <ReactPlayer url='https://www.youtube.com/watch?v=90F6qTII73M'
+                            width={'100%'} height={'100%'} />
                     </IntroCardMovie>
                 </IntroCard>
             </div>
