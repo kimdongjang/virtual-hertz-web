@@ -7,7 +7,7 @@ import useWindowResize from "../hooks/useWindowResize";
 import ReactPlayer from "react-player";
 
 const IntroWrpper = tw.div`
-    flex flex-col h-screen justify-evenly
+    flex flex-col h-screen justify-evenly snap-y
 `
 
 const IntroTop = tw.div`

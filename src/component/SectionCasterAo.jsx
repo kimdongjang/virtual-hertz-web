@@ -5,15 +5,19 @@ import { FaArrowRight } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    flex h-screen justify-center 
+    flex h-screen justify-center items-center snap-y
+    flex-col md:flex-row
 `
 
 const CasterImageWrapper = tw.div`
-    h-full 
+h-2/3
+`
+const AudioPlayerWrapper = tw.div`
+    max-w-xs md:max-w-sm m-2
 `
 
 const CasterImage = tw.img`
-    p-8 h-full
+h-full p-8
 `
 const CasterSectionInner = tw.div`
     flex flex-col justify-center 
@@ -27,14 +31,15 @@ const CasterSectionHeader = tw.div`
 `
 
 const CasterInnerText = tw.p`
-    font-NotoSansKR font-medium text-sm lg:text-md leading-tight
-    max-w-sm
+    font-NotoSansKR font-medium leading-tight
+    text-xs sm:text-sm md:text-md lg:text-lg 
+    max-w-xs
     p-4
 `
 const CasterTwitterLink = tw.div`
 flex justify-between items-center
 border-2 border-solid border-blue-300
-max-w-sm
+max-w-xs
 p-2 my-1 mx-4 lg:p-4 lg:my-2
 text-sm md:text-md  lg:text-lg
 font-GmarketSans 
@@ -58,11 +63,9 @@ const SectionCasterAo = forwardRef((prpos, ref) => {
                     @stu_diho
                     ⚓️
                 </CasterInnerText>
-                <div className="m-4">
-                    <ReactAudioPlayer
-                        src="./audio/ao.mp3" controls
-                    />
-                </div>
+                <AudioPlayerWrapper>
+                    <ReactAudioPlayer src="./audio/ao.mp3" controls />
+                </AudioPlayerWrapper>
 
                 <CasterTwitterLink className="hover:cursor-pointer"
                     onClick={() => window.location.href = "http://twitch.tv/vhz_ao"} >
