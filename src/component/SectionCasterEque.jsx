@@ -5,37 +5,20 @@ import { FaArrowRight } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    flex h-screen justify-center items-center
+    flex h-screen justify-center items-center snap-y
+    flex-col md:flex-row
 `
 
-// const EqueCasterIntroduce = tw.div`
-//     rotate-3
-//     bg-[#483440]
-//     border-yellow-900
-//     border-4    
-//     underline
-//     underline-offset-2
-//     decoration-dashed
-//     font-GmarketSans font-medium text-2xl
-//     p-4 m-4 text-p-default  
-//     decoration-[#291723]
-//     text-center
-// `
-// const EqueCasterIntroduceHighlight = tw.p`
-//     inline-block
-//     underline
-//     underline-offset-2
-//     decoration-dashed
-//     font-GmarketSans font-medium
-//     text-p-highlight
-//     decoration-[#291723]
-// `
 const CasterImageWrapper = tw.div`
-    h-full 
+    h-2/3
+
+`
+const AudioPlayerWrapper = tw.div`
+    max-w-xs md:max-w-sm m-2
 `
 
 const CasterImage = tw.img`
-    p-8 h-full
+    h-full p-8
 `
 
 const CasterSectionInner = tw.div`
@@ -49,14 +32,15 @@ const CasterSectionHeader = tw.div`
 `
 
 const CasterInnerText = tw.p`
-    font-NotoSansKR font-medium text-sm lg:text-md leading-tight
-    max-w-sm
+    font-NotoSansKR font-medium leading-tight
+    text-xs sm:text-sm md:text-md lg:text-lg 
+    max-w-md
     p-4
 `
 const CasterTwitterLink = tw.div`
     flex justify-between items-center
     border-2 border-solid border-red-300
-    max-w-sm
+    max-w-xs
     p-2 my-1 mx-4 lg:p-4 lg:my-2
     text-sm md:text-md  lg:text-lg
     font-GmarketSans 
@@ -89,10 +73,10 @@ const SectionCasterEque = forwardRef((prpos, ref) => {
                     <EqueCasterIntroduceHighlight>길거리 캐스팅</EqueCasterIntroduceHighlight>을 당해<br />
                     <EqueCasterIntroduceHighlight>버츄얼 헤르츠</EqueCasterIntroduceHighlight>에 합류하게 된다!
                 </EqueCasterIntroduce> */}
-                <div className="m-4">
+                <AudioPlayerWrapper>
                     <ReactAudioPlayer src="./audio/eque.mp3" controls
                     />
-                </div>
+                </AudioPlayerWrapper>
                 <CasterTwitterLink className="hover:cursor-pointer"
                     onClick={() => window.location.href = "https://www.twitch.tv/e_que_"} >
                     방송채널 바로가기
