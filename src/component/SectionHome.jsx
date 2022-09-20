@@ -4,6 +4,7 @@ import tw from "tailwind-styled-components";
 
 const BackMovieWrapper = tw.div`
    w-full h-screen flex flex-col snap-y
+   lg:bg-white
 `
 
 const BackMovie = tw.div`
