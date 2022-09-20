@@ -1,9 +1,13 @@
+
 .main-section{
   position: relative;
   width: 100%;
 }
 
-
+.backgroundPattern{
+  background-color: white;
+  /* background: repeating-linear-gradient( 45deg, #f43f5e, #f43f5e 5px, white 5px, white 25px ); */
+}
 .main-section__bg-video > video {
   display: block;
   position: absolute;

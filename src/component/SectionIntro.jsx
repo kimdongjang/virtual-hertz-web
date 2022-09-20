@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { BsTwitter } from "react-icons/bs"
+import './sectionIntro.css'
 
 
 import tw from "tailwind-styled-components";
@@ -137,7 +138,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
 
     return (
-        <IntroWrpper ref={ref}>
+        <IntroWrpper ref={ref} >
             {/* <IntroTop>
                 <h1>Ofiicial Music Video</h1>
                 <div>

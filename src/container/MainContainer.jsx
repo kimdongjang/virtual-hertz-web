@@ -41,13 +41,19 @@ export default function MainContainer() {
 
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
-  const [currentScroll, setCurrentScroll] = useState(0);
-  const [isTouch, setTouch] = useState(false);
 
-  let cur = 0;
+  let cur = 1;
+  const [translateY, setTranslateY] = useState(0);
+
 
   let initialX = null;
   let initialY = null;
+
+  const windowSize = useWindowResize();
+
+
+
+
 
   const ScrollDownThrottle = useMemo(
     () =>
@@ -82,87 +88,104 @@ export default function MainContainer() {
 
 
 
+  // useEffect(() => {
+  //   const wheelHandler = (e) => {
+  //     e.preventDefault();
+  //     const { deltaY } = e;
+  //     const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
+  //     // const pageHeight = window.innerHeight; // 화면 세로길이, 100vh와 같습니다.
+
+
+  //     if (deltaY > 0) {
+  //       ScrollDownThrottle();
+
+  //     } else {
+  //       ScrollUpThrottle();
+  //     }
+  //   };
+
+  //   // modern Chrome requires { passive: false } when adding event
+  //   var supportsPassive = false;
+  //   try {
+  //     window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+  //       get: function () { supportsPassive = true; }
+  //     }));
+  //   } catch (e) { }
+  //   var wheelOpt = supportsPassive ? { passive: false } : false;
+
+  //   const initTouch = (e) => {
+  //     initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
+  //     initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+  //   }
+  //   const swipeDirection = (e) => {
+  //     e.preventDefault();
+  //     e.stopImmediatePropagation();
+  //     e.stopPropagation();
+  //     if (initialX !== null && initialY !== null) {
+  //       const currentX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
+  //       const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+
+  //       let diffX = initialX - currentX;
+  //       let diffY = initialY - currentY;
+  //       if (diffY < 0) {
+  //         // ScrollDownThrottle();
+  //       }
+  //       else if (diffY > 0) {
+  //         // ScrollUpThrottle();
+  //       }
+  //       console.log("swipe")
+  //       initialX = null;
+  //       initialY = null;
+  //     }
+
+
+  //   }
+
+  //   const touchHandler = (e) => {
+  //     e.preventDefault();
+  //     e.stopImmediatePropagation();
+  //     e.stopPropagation();
+  //     console.log(e.changedTouches[0].clientX)
+  //     console.log(e.changedTouches[0].clientY)
+  //     console.log(e.changedTouches[0])
+  //   };
+
+  //   const outerDivRefCurrent = outerDivRef.current;
+  //   outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+
+  //   // window.addEventListener('touchstart', (e) => { setTouch(true), { passive: false } });
+
+  //   window.addEventListener("touchstart", initTouch, { passive: false });
+  //   window.addEventListener('touchmove', swipeDirection, { passive: false });
+  //   window.addEventListener("touchend", touchHandler, { passive: false });
+  //   // window.addEventListener('touchend', (e) => { setTouch(false), { passive: false } });
+  //   return () => {
+  //     outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+  //     window.removeEventListener('touchmove', touchHandler);
+  //   };
+  // }, []);
   useEffect(() => {
     const wheelHandler = (e) => {
       e.preventDefault();
       const { deltaY } = e;
-      const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
-      const pageHeight = window.innerHeight; // 화면 세로길이, 100vh와 같습니다.
-      console.log("scrollTop  : " + scrollTop)
-      console.log("pageHeight  : " + pageHeight)
-      console.log("pageHeight  : " + pageHeight * 2)
-      console.log("pageHeight  : " + pageHeight * 3)
-      console.log("pageHeight  : " + pageHeight * 4)
-
-
+      console.log(scrollIndex)
       if (deltaY > 0) {
-        ScrollDownThrottle();
+        setScrollIndex(++cur)
+        setTranslateY(windowSize.height * cur)
 
       } else {
-        ScrollUpThrottle();
+        setScrollIndex(--cur)
+        setTranslateY(windowSize.height * cur)
       }
-    };
-
-    // modern Chrome requires { passive: false } when adding event
-    var supportsPassive = false;
-    try {
-      window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-        get: function () { supportsPassive = true; }
-      }));
-    } catch (e) { }
-    var wheelOpt = supportsPassive ? { passive: false } : false;
-
-    const initTouch = (e) => {
-      initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
-      initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+      console.log(translateY)
     }
-    const swipeDirection = (e) => {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      e.stopPropagation();
-      if (initialX !== null && initialY !== null) {
-        const currentX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
-        const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
-
-        let diffX = initialX - currentX;
-        let diffY = initialY - currentY;
-        if (diffY < 0) {
-          ScrollDownThrottle();
-        }
-        else if (diffY > 0) {
-          ScrollUpThrottle();
-        }
-        console.log("swipe")
-        initialX = null;
-        initialY = null;
-      }
-
-
-    }
-
-    const touchHandler = (e) => {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      e.stopPropagation();
-      console.log(e.changedTouches[0].clientX)
-      console.log(e.changedTouches[0].clientY)
-      console.log(e.changedTouches[0])
-    };
-
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-
-    // window.addEventListener('touchstart', (e) => { setTouch(true), { passive: false } });
-
-    window.addEventListener("touchstart", initTouch, { passive: false });
-    window.addEventListener('touchmove', swipeDirection, { passive: false });
-    window.addEventListener("touchend", touchHandler, { passive: false });
-    // window.addEventListener('touchend', (e) => { setTouch(false), { passive: false } });
     return () => {
       outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-      window.removeEventListener('touchmove', touchHandler);
-    };
-  }, []);
+    }
+
+  }, [])
 
 
   return (
@@ -171,12 +194,20 @@ export default function MainContainer() {
         <Navbar list={list} scrollTo={scrollTo} />
       </NavbarWrapper>
       <ContentWrapper ref={outerDivRef}>
+        <div style={{ transform: `translateY(${translateY}` }}>
+          <SectionHome ref={scrollRefs.current[0]} />
+          <SectionIntro ref={scrollRefs.current[1]} />
+          <SectionCasterEque ref={scrollRefs.current[2]} />
+          <SectionCasterAo ref={scrollRefs.current[3]} />
+          <SectionCasterNina ref={scrollRefs.current[4]} />
+
+        </div>
         <Dots scrollIndex={scrollIndex} />
-        <SectionHome ref={scrollRefs.current[0]} />
+        {/* <SectionHome ref={scrollRefs.current[0]} />
         <SectionIntro ref={scrollRefs.current[1]} />
         <SectionCasterEque ref={scrollRefs.current[2]} />
         <SectionCasterAo ref={scrollRefs.current[3]} />
-        <SectionCasterNina ref={scrollRefs.current[4]} />
+        <SectionCasterNina ref={scrollRefs.current[4]} /> */}
       </ContentWrapper >
     </MainWrapper>
   )
