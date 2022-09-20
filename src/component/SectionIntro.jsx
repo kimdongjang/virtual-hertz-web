@@ -122,7 +122,6 @@ const SectionIntro = forwardRef((prpos, ref) => {
         // console.log(width)
         // setWindowWidth(width);
         // setWindowHeight(height);
-        console.log(videoRef.width)
         setWindowHeight(videoRef.width * 0.5625);
 
     }, [windowSizeObject])

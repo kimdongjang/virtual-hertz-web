@@ -1,5 +1,5 @@
 
-import React, { createRef, useCallback, useEffect, useRef, useState } from "react";
+import React, { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Navbar from "../component/Navbar";
 import SectionCaster from "../component/SectionCaster";
 import SectionHome from "../component/SectionHome";
@@ -12,6 +12,8 @@ import SectionCasterEque from "../component/SectionCasterEque";
 import SectionCasterAo from "../component/SectionCasterAo";
 import SectionCasterNina from "../component/SectionCasterNina";
 import useWindowResize from "../hooks/useWindowResize";
+
+import { throttle } from 'lodash';
 
 
 const MainWrapper = tw.div`
@@ -40,20 +42,45 @@ export default function MainContainer() {
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
   const [currentScroll, setCurrentScroll] = useState(0);
+  const [isTouch, setTouch] = useState(false);
 
   let cur = 0;
 
-  var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
-  function preventDefault(e) {
-    e.preventDefault();
-  }
+  let initialX = null;
+  let initialY = null;
 
-  function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
-      preventDefault(e);
-      return false;
-    }
-  }
+  const ScrollDownThrottle = useMemo(
+    () =>
+      throttle(() => {
+        console.log('Scroll down');
+        if (cur < scrollRefs.current.length - 1) {
+          scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
+          setScrollIndex(cur)
+        }
+        // else {
+        //   scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView();
+        //   setScrollIndex(cur)
+        // }
+        // if (!tabSelectorRef.current) return;
+        // const nextTabnavOn = window.scrollY > tabSelectorRef.current.offsetTop + 100;
+        // if (nextTabnavOn !== isTabnavOn) setIsTabnavOn(nextTabnavOn);
+      }, 300),
+    []
+  );
+
+  const ScrollUpThrottle = useMemo(
+    () =>
+      throttle(() => {
+        console.log('Scroll up');
+        if (cur > 0) {
+          scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
+          setScrollIndex(cur)
+        }
+      }, 300),
+    []
+  );
+
+
 
   useEffect(() => {
     const wheelHandler = (e) => {
@@ -69,87 +96,71 @@ export default function MainContainer() {
 
 
       if (deltaY > 0) {
-        if (cur < scrollRefs.current.length - 1) {
-          scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
-          setScrollIndex(cur)
-        }
-        else {
-          scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView({ behavior: "smooth" });
-          setScrollIndex(cur)
-        }
+        ScrollDownThrottle();
 
-        // // 스크롤 내릴 때
-        // if (scrollTop >= 0 && scrollTop < pageHeight) {
-        //   //현재 1페이지
-        //   console.log("0->1");
-        //   setScrollIndex(2);
-        // } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 1.8) {
-        //   //현재 2페이지
-        //   console.log("1->2");
-        //   scrollRefs.current[2].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(3);
-        // } else if (scrollTop >= pageHeight * 1.8 && scrollTop < pageHeight * 2.8) {
-        //   //현재 3페이지
-        //   console.log("2->3");
-        //   scrollRefs.current[3].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(4);
-        // } else if (scrollTop >= pageHeight * 2.8 && scrollTop < pageHeight * 4) {
-        //   console.log("3->4");
-        //   scrollRefs.current[4].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(5);
-        // }
       } else {
-        // 스크롤 올릴 때
-        if (cur > 0) {
-          scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
-          setScrollIndex(cur)
-        }
-        // if (scrollTop >= 0 && scrollTop < pageHeight + 1) {
-        //   //현재 1페이지
-        //   console.log("1->0");
-        //   scrollRefs.current[0].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(1);
-        // } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 1.8) {
-        //   //현재 2페이지
-        //   console.log("3->2");
-        //   scrollRefs.current[1].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(3);
-        // } else if (scrollTop >= pageHeight * 1.8 && scrollTop < pageHeight * 2.8) {
-        //   //현재 2페이지
-        //   console.log("4->3");
-        //   scrollRefs.current[2].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(3);
-        // } else if (scrollTop >= pageHeight * 2.8 && scrollTop < pageHeight * 4) {
-        //   //현재 2페이지
-        //   console.log("5->4");
-        //   scrollRefs.current[3].current.scrollIntoView({ behavior: "smooth" });
-        //   setScrollIndex(4);
-        // }
+        ScrollUpThrottle();
       }
     };
 
+    // modern Chrome requires { passive: false } when adding event
     var supportsPassive = false;
     try {
       window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
         get: function () { supportsPassive = true; }
       }));
     } catch (e) { }
-
     var wheelOpt = supportsPassive ? { passive: false } : false;
+
+    const initTouch = (e) => {
+      initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
+      initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+    }
+    const swipeDirection = (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      if (initialX !== null && initialY !== null) {
+        const currentX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
+        const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+
+        let diffX = initialX - currentX;
+        let diffY = initialY - currentY;
+        if (diffY < 0) {
+          ScrollDownThrottle();
+        }
+        else if (diffY > 0) {
+          ScrollUpThrottle();
+        }
+        console.log("swipe")
+        initialX = null;
+        initialY = null;
+      }
+
+
+    }
+
+    const touchHandler = (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+      console.log(e.changedTouches[0].clientX)
+      console.log(e.changedTouches[0].clientY)
+      console.log(e.changedTouches[0])
+    };
 
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
 
-    window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-    // window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-    window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-    window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+    // window.addEventListener('touchstart', (e) => { setTouch(true), { passive: false } });
+
+    window.addEventListener("touchstart", initTouch, { passive: false });
+    window.addEventListener('touchmove', swipeDirection, { passive: false });
+    window.addEventListener("touchend", touchHandler, { passive: false });
+    // window.addEventListener('touchend', (e) => { setTouch(false), { passive: false } });
     return () => {
       outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-      window.removeEventListener('DOMMouseScroll', preventDefault, false);
-      // window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
-      window.removeEventListener('touchmove', preventDefault, wheelOpt);
-      window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+      window.removeEventListener('touchmove', touchHandler);
     };
   }, []);
 
