@@ -165,17 +165,20 @@ export default function MainContainer() {
   //   };
   // }, []);
   useEffect(() => {
+    const calculateTranslate = (index) => {
+      setScrollIndex(scrollIndex => scrollIndex + index)
+
+    }
     const wheelHandler = (e) => {
       e.preventDefault();
       const { deltaY } = e;
-      console.log(scrollIndex)
       if (deltaY > 0) {
-        setScrollIndex(++cur)
-        setTranslateY(windowSize.height * cur)
+        calculateTranslate(-1);
+        setTranslateY(windowSize.height * scrollIndex)
 
       } else {
-        setScrollIndex(--cur)
-        setTranslateY(windowSize.height * cur)
+        calculateTranslate(1);
+        setTranslateY(windowSize.height * scrollIndex)
       }
       console.log(translateY)
     }
