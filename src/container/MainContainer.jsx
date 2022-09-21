@@ -54,19 +54,23 @@ export default function MainContainer() {
 
   const moveDown = () => {
     console.log("move down")
-    console.log("scrollIndex : " + scrollIndex)
-    if (DIVIDER_HEIGHT <= scrollIndex) return;
-    // setTranslateValue((prev) => prev + windowDimensions.height);
-    setScrollIndex((prev) => prev + 1);
+    console.log("scrollIndex : " + cur)
+    console.log("windowDimensions.height : " + windowDimensions.height)
+    if (DIVIDER_HEIGHT <= cur) return;
+    setTranslateValue((prev) => prev + windowDimensions.height);
+    // setScrollIndex((prev) => prev + 1);
+    cur += 1;
   };
 
   const moveUp = () => {
     console.log("move Up")
-    console.log("scrollIndex : " + scrollIndex)
-    if (scrollIndex <= 1) return;
+    console.log("scrollIndex : " + cur)
+    console.log("windowDimensions.height : " + windowDimensions.height)
+    if (cur <= 1) return;
 
-    // setTranslateValue((prev) => prev - windowDimensions.height);    
-    setScrollIndex((prev) => prev - 1);
+    setTranslateValue((prev) => prev - windowDimensions.height);
+    // setScrollIndex((prev) => prev - 1);
+    cur -= 1;
   };
 
   function getWindowDimensions() {
@@ -242,11 +246,16 @@ export default function MainContainer() {
 
   useEffect(() => {
     outerDivRef.current.style.transition = 'all 0.5s ease-in-out';
-    outerDivRef.current.style.transform = `translateY(-${windowDimensions.height * scrollIndex}px)`;
+    outerDivRef.current.style.transform = `translateY(-${translateValue}px)`;
     console.log("translateValue : " + translateValue)
-    console.log("scrollIndex : " + scrollIndex)
+    console.log("scrollIndex : " + cur)
 
-  }, [scrollIndex])
+  }, [translateValue])
+
+  // useEffect(() => {
+  //   console.log("=== update window! === ")
+  //   setWindowDimensions(getWindowDimensions())
+  // }, [windowDimensions])
 
 
   return (
@@ -260,7 +269,7 @@ export default function MainContainer() {
         <SectionCasterEque ref={scrollRefs.current[2]} />
         <SectionCasterAo ref={scrollRefs.current[3]} />
         <SectionCasterNina ref={scrollRefs.current[4]} />
-        <Dots scrollIndex={scrollIndex} />
+        <Dots scrollIndex={cur} />
         {/* <SectionHome ref={scrollRefs.current[0]} />
         <SectionIntro ref={scrollRefs.current[1]} />
         <SectionCasterEque ref={scrollRefs.current[2]} />
