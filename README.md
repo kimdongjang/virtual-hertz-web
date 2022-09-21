@@ -13,6 +13,9 @@ https://velog.io/@dami/React-Top-Button-%EB%A7%8C%EB%93%A4%EA%B8%B0-Custom-Hook-
 ## scroll preventdefault
 https://joylee-developer.tistory.com/181
 
+## scroll useEffect
+https://devbirdfeet.tistory.com/233
+
 ## scroll smoode move
 
 https://codingbroker.tistory.com/128
