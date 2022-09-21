@@ -20,40 +20,45 @@ const IntroTop = tw.div`
 const IntroCard = tw.div`
     h-1/2
     flex flex-col lg:flex-row lg:items-center    
-    pl-16 pr-16
-    py-8
+    pl-8 pr-8 py-12
+    md:pl-16 md:pr-16 md:py-16
 
-    bg-eque-intro-card
+    bg-[#070707]
    
 `
 const IntroInner = tw.div`
     flex-col w-full
 `
 const IntroInnerHeader = tw.div`
-    py-4
     font-GmarketSans font-bold    
-    text-p-black text-xl
+    text-p-black text-sm md:text-xl
     lg:text-4xl
     underline underline-offset-8 decoration-[#f43f5e]
+    text-[#fff]
     
 `
-const IntroInnerMiddleText = tw.div`    
-    font-GmarketSans font-medium
-    text-md lg:text-2xl
+const IntroInnerMiddleText = tw.div`  
+    m-1  
+    font-NotoSansKR font-medium
+    text-xs md:text-md lg:text-2xl
     max-w-md lg:max-w-2xl xl:max-w-2xl
+    text-[#fff]
 `
 
 const IntroInnerText = tw.p`
+    m-2
     font-NotoSansKR font-medium
-     text-sm lg:text-lg
-     leading-tight    
+    text-[10px] lg:text-lg
+    leading-tight    
+    text-[#fff]
 `
 
 const IntroCardMovie = tw.div`
     flex items-center
     justify-center
-    w-full h-full
-    py-8 lg:py-16 lg:px-8
+    w-full h-2/3
+    md:h-2/3
+    pb-8 lg:py-16 lg:px-8
 `
 // =============================================
 
@@ -153,8 +158,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             I still, screaming..
                         </IntroInnerMiddleText>
                         <IntroInnerText>
-                            Music by<br />
-                            [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
+                            Music by [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
                             Regle&nbsp;
                             <BsTwitter className="inline-block cursor-pointer"
                                 onClick={() => window.location.href = "https://twitter.com/Regle_tw"} />
@@ -163,9 +167,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             <BsTwitter className="inline-block cursor-pointer"
                                 onClick={() => window.location.href = "https://twitter.com/Sahqmo"} />
                             <br />
-                            <br />
-                            Directed by<br />
-                            송경민
+                            Directed by 송경민
 
                         </IntroInnerText>
                     </IntroInner>
@@ -180,8 +182,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
                         <IntroInnerMiddleText>A.O's 1st Digital Single "Dive To You"
                             DIVE TO YOU!</IntroInnerMiddleText>
                         <IntroInnerText>
-                            Music by<br />
-                            [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
+                            Music by [Regle, Sahqmo (Virtual Hertz 'Music' team)]<br />
                             Regle&nbsp;
                             <BsTwitter className="inline-block cursor-pointer"
                                 onClick={() => window.location.href = "https://twitter.com/Regle_tw"} />
@@ -190,9 +191,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
                             <BsTwitter className="inline-block cursor-pointer"
                                 onClick={() => window.location.href = "https://twitter.com/Sahqmo"} />
                             <br />
-                            <br />
-                            Directed by<br />
-                            송경민
+                            Directed by 송경민
 
                         </IntroInnerText>
                     </IntroInner>

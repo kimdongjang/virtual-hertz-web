@@ -22,7 +22,7 @@ const MainWrapper = tw.div`
 const NavbarWrapper = tw.div`
 `
 const ContentWrapper = tw.div`
-flex flex-col overflow-y-auto h-screen 
+flex flex-col overflow-y-auto h-full
 `
 const DIVIDER_HEIGHT = 5;
 
@@ -41,50 +41,71 @@ export default function MainContainer() {
 
   const outerDivRef = useRef();
   const [scrollIndex, setScrollIndex] = useState(1);
+  const [translateValue, setTranslateValue] = useState(0);
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
   let cur = 1;
-  const [translateY, setTranslateY] = useState(0);
 
 
   let initialX = null;
   let initialY = null;
 
-  const windowSize = useWindowResize();
+  // const windowSize = useWindowResize();
+
+  const moveDown = (index) => {
+    if (DIVIDER_HEIGHT <= index) return;
+    setTranslateValue((prev) => prev + windowDimensions.height);
+    setScrollIndex((prev) => prev + 1);
+    console.log("move down")
+  };
+
+  const moveUp = (index) => {
+    if (index <= 1) return;
+
+    setTranslateValue((prev) => prev - windowDimensions.height);
+    setScrollIndex((prev) => prev - 1);
+    console.log("move Up")
+  };
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
 
 
+  // const ScrollDownThrottle = useMemo(
+  //   () =>
+  //     throttle(() => {
+  //       console.log('Scroll down');
+  //       if (cur < scrollRefs.current.length - 1) {
+  //         scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
+  //         setScrollIndex(cur)
+  //       }
+  //       // else {
+  //       //   scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView();
+  //       //   setScrollIndex(cur)
+  //       // }
+  //       // if (!tabSelectorRef.current) return;
+  //       // const nextTabnavOn = window.scrollY > tabSelectorRef.current.offsetTop + 100;
+  //       // if (nextTabnavOn !== isTabnavOn) setIsTabnavOn(nextTabnavOn);
+  //     }, 300),
+  //   []
+  // );
 
-
-
-  const ScrollDownThrottle = useMemo(
-    () =>
-      throttle(() => {
-        console.log('Scroll down');
-        if (cur < scrollRefs.current.length - 1) {
-          scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
-          setScrollIndex(cur)
-        }
-        // else {
-        //   scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView();
-        //   setScrollIndex(cur)
-        // }
-        // if (!tabSelectorRef.current) return;
-        // const nextTabnavOn = window.scrollY > tabSelectorRef.current.offsetTop + 100;
-        // if (nextTabnavOn !== isTabnavOn) setIsTabnavOn(nextTabnavOn);
-      }, 300),
-    []
-  );
-
-  const ScrollUpThrottle = useMemo(
-    () =>
-      throttle(() => {
-        console.log('Scroll up');
-        if (cur > 0) {
-          scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
-          setScrollIndex(cur)
-        }
-      }, 300),
-    []
-  );
+  // const ScrollUpThrottle = useMemo(
+  //   () =>
+  //     throttle(() => {
+  //       console.log('Scroll up');
+  //       if (cur > 0) {
+  //         scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
+  //         setScrollIndex(cur)
+  //       }
+  //     }, 300),
+  //   []
+  // );
 
 
 
@@ -165,30 +186,64 @@ export default function MainContainer() {
   //   };
   // }, []);
   useEffect(() => {
-    const calculateTranslate = (index) => {
-      setScrollIndex(scrollIndex => scrollIndex + index)
 
-    }
     const wheelHandler = (e) => {
       e.preventDefault();
+      setWindowDimensions(getWindowDimensions());
       const { deltaY } = e;
-      if (deltaY > 0) {
-        calculateTranslate(-1);
-        setTranslateY(windowSize.height * scrollIndex)
-
-      } else {
-        calculateTranslate(1);
-        setTranslateY(windowSize.height * scrollIndex)
+      if (deltaY < 0) {
+        moveUp(scrollIndex)
       }
-      console.log(translateY)
+      else if (deltaY > 0) {
+        moveDown(scrollIndex)
+      }
+
     }
+
+    const initTouch = (e) => {
+      initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
+      initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+    }
+
+    const swipeDirection = (e) => {
+      e.preventDefault();
+      setWindowDimensions(getWindowDimensions());
+      if (initialX !== null && initialY !== null) {
+        const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
+
+        let diffY = initialY - currentY;
+        if (diffY < 0) {
+          moveUp()
+        }
+        else if (diffY > 0) {
+          moveDown()
+        }
+        initialX = null;
+        initialY = null;
+      }
+    }
+
+
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+
+    window.addEventListener("touchstart", initTouch, { passive: false });
+    window.addEventListener('touchmove', swipeDirection, { passive: false });
     return () => {
       outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+      window.removeEventListener('touchmove', swipeDirection, { passive: false });
     }
 
   }, [])
+
+  useEffect(() => {
+    outerDivRef.current.style.transition = 'all 0.5s ease-in-out';
+    outerDivRef.current.style.transform = `translateY(-${translateValue}px)`;
+    console.log("effect")
+    console.log(translateValue)
+    console.log(scrollIndex)
+
+  }, [translateValue])
 
 
   return (
@@ -197,14 +252,11 @@ export default function MainContainer() {
         <Navbar list={list} scrollTo={scrollTo} />
       </NavbarWrapper>
       <ContentWrapper ref={outerDivRef}>
-        <div style={{ transform: `translateY(${translateY}` }}>
-          <SectionHome ref={scrollRefs.current[0]} />
-          <SectionIntro ref={scrollRefs.current[1]} />
-          <SectionCasterEque ref={scrollRefs.current[2]} />
-          <SectionCasterAo ref={scrollRefs.current[3]} />
-          <SectionCasterNina ref={scrollRefs.current[4]} />
-
-        </div>
+        <SectionHome ref={scrollRefs.current[0]} />
+        <SectionIntro ref={scrollRefs.current[1]} />
+        <SectionCasterEque ref={scrollRefs.current[2]} />
+        <SectionCasterAo ref={scrollRefs.current[3]} />
+        <SectionCasterNina ref={scrollRefs.current[4]} />
         <Dots scrollIndex={scrollIndex} />
         {/* <SectionHome ref={scrollRefs.current[0]} />
         <SectionIntro ref={scrollRefs.current[1]} />

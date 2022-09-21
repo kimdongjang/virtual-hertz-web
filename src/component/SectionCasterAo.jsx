@@ -5,45 +5,52 @@ import { FaArrowRight } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    flex h-screen justify-center items-center snap-y
+    h-screen flex  items-center justify-center 
     flex-col md:flex-row
 `
 
 const CasterImageWrapper = tw.div`
-h-2/3
+    
 `
 const AudioPlayerWrapper = tw.div`
     max-w-xs md:max-w-sm m-2
 `
 
 const CasterImage = tw.img`
-h-full p-8
-`
-const CasterSectionInner = tw.div`
-    flex flex-col justify-center 
+    h-[410px] pt-12
 `
 
+const CasterSectionInner = tw.div`
+    flex flex-col m-2 max-h-max
+`
+const CasterSectionHeaderDeco = tw.div`
+    w-1 h-7
+    ml-1
+`
 const CasterSectionHeader = tw.div`
+    ml-2
     flex justify-center items-center
-    font-NotoSansKR w-16 h-8
+    font-NotoSansKR w-12 h-6
     text-white bg-blue-200 rounded-md
+    text-xs
     hover:bg-blue-300 focus:outline-none focus:shadow-outline    
 `
 
 const CasterInnerText = tw.p`
-    font-NotoSansKR font-medium leading-tight
-    text-xs sm:text-sm md:text-md lg:text-lg 
-    max-w-xs
-    p-4
+    font-NotoSansKR font-light
+    text-[6px] sm:text-sm md:text-md lg:text-lg 
+    max-w-md
+    p-2
 `
 const CasterTwitterLink = tw.div`
-flex justify-between items-center
-border-2 border-solid border-blue-300
-max-w-xs
-p-2 my-1 mx-4 lg:p-4 lg:my-2
-text-sm md:text-md  lg:text-lg
-font-GmarketSans 
+    flex justify-between items-center
+    border-2 border-solid border-blue-300
+    max-w-xs
+    p-2 my-1 mx-4 lg:p-4 lg:my-2
+    text-xs md:text-md  lg:text-lg
+    font-GmarketSans 
 `
+
 
 
 
@@ -55,17 +62,11 @@ const SectionCasterAo = forwardRef((prpos, ref) => {
             </CasterImageWrapper>
             <CasterSectionInner>
                 <div className="caster-section__title">
-                    <div className="caster-section__title-deco" style={{ background: '#CCDFF4' }} />
+                    <CasterSectionHeaderDeco style={{ background: '#CCDFF4' }} />
                     <CasterSectionHeader>AO</CasterSectionHeader>
                 </div>
-                <CasterInnerText>필승! 아오임당~ 🐟︎ <br />
-                    먀먀-
-                    @stu_diho
-                    ⚓️
+                <CasterInnerText>필승! 아오임당~ 🐟︎  먀먀- @stu_diho ⚓️
                 </CasterInnerText>
-                <AudioPlayerWrapper>
-                    <ReactAudioPlayer src="./audio/ao.mp3" controls />
-                </AudioPlayerWrapper>
 
                 <CasterTwitterLink className="hover:cursor-pointer"
                     onClick={() => window.location.href = "http://twitch.tv/vhz_ao"} >

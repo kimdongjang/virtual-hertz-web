@@ -38,9 +38,3 @@
     flex-direction: row;
     align-items: center;
 }
-
-.caster-section__title-deco{
-    width: 5px;
-    height: 2.5rem;
-    margin-right: 15px;
-}
