@@ -52,19 +52,21 @@ export default function MainContainer() {
 
   // const windowSize = useWindowResize();
 
-  const moveDown = (index) => {
-    if (DIVIDER_HEIGHT <= index) return;
-    setTranslateValue((prev) => prev + windowDimensions.height);
-    setScrollIndex((prev) => prev + 1);
+  const moveDown = () => {
     console.log("move down")
+    console.log("scrollIndex : " + scrollIndex)
+    if (DIVIDER_HEIGHT <= scrollIndex) return;
+    // setTranslateValue((prev) => prev + windowDimensions.height);
+    setScrollIndex((prev) => prev + 1);
   };
 
-  const moveUp = (index) => {
-    if (index <= 1) return;
-
-    setTranslateValue((prev) => prev - windowDimensions.height);
-    setScrollIndex((prev) => prev - 1);
+  const moveUp = () => {
     console.log("move Up")
+    console.log("scrollIndex : " + scrollIndex)
+    if (scrollIndex <= 1) return;
+
+    // setTranslateValue((prev) => prev - windowDimensions.height);    
+    setScrollIndex((prev) => prev - 1);
   };
 
   function getWindowDimensions() {
@@ -191,11 +193,12 @@ export default function MainContainer() {
       e.preventDefault();
       setWindowDimensions(getWindowDimensions());
       const { deltaY } = e;
+      console.log(deltaY)
       if (deltaY < 0) {
-        moveUp(scrollIndex)
+        moveUp()
       }
       else if (deltaY > 0) {
-        moveDown(scrollIndex)
+        moveDown()
       }
 
     }
@@ -212,6 +215,7 @@ export default function MainContainer() {
         const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
 
         let diffY = initialY - currentY;
+
         if (diffY < 0) {
           moveUp()
         }
@@ -238,12 +242,11 @@ export default function MainContainer() {
 
   useEffect(() => {
     outerDivRef.current.style.transition = 'all 0.5s ease-in-out';
-    outerDivRef.current.style.transform = `translateY(-${translateValue}px)`;
-    console.log("effect")
-    console.log(translateValue)
-    console.log(scrollIndex)
+    outerDivRef.current.style.transform = `translateY(-${windowDimensions.height * scrollIndex}px)`;
+    console.log("translateValue : " + translateValue)
+    console.log("scrollIndex : " + scrollIndex)
 
-  }, [translateValue])
+  }, [scrollIndex])
 
 
   return (
