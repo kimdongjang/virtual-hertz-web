@@ -14,6 +14,7 @@ import SectionCasterNina from "../component/SectionCasterNina";
 import useWindowResize from "../hooks/useWindowResize";
 
 import { throttle } from 'lodash';
+import SectionContactus from "../component/SectionContactus";
 
 
 const MainWrapper = tw.div`
@@ -31,7 +32,7 @@ export default function MainContainer() {
   /**
    * navigation 리스트 별로 ref 초기화
    */
-  const list = ["MAIN", "INTRODUCE", "EQUE", "AO", "NINA"];
+  const list = ["MAIN", "INTRODUCE", "EQUE", "AO", "NINA", "CONTACT US"];
   scrollRefs.current = list.map((_, i) => scrollRefs.current[i] ?? createRef());
 
   const scrollTo = (index) => () => {
@@ -167,6 +168,7 @@ export default function MainContainer() {
         <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
         <SectionCasterNina ref={scrollRefs.current[4]} height={windowSize.current.height} />
         <Dots scrollIndex={scrollIndexLet} />
+        <SectionContactus ref={scrollRefs.current[5]} height={windowSize.current.height} />
       </ContentWrapper >
     </MainWrapper>
   )
