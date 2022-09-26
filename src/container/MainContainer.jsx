@@ -35,7 +35,9 @@ export default function MainContainer() {
   scrollRefs.current = list.map((_, i) => scrollRefs.current[i] ?? createRef());
 
   const scrollTo = (index) => () => {
-    scrollRefs.current[index]?.current.scrollIntoView({ behavior: "smooth" });
+    scrollIndexLet = index
+    setScrollIndex(index);
+    // ScrollMove(index);
     // setActive(index);
   };
 
@@ -63,9 +65,15 @@ export default function MainContainer() {
     scrollIndexLet -= 1;
     setScrollIndex(scrollIndexLet);
   };
-  useEffect(() => {
+
+  const ScrollMove = (index) => {
     outerDivRef.current.style.transition = 'all 1s ease-in-out';
-    outerDivRef.current.style.transform = `translateY(-${windowSize.current.height * scrollIndex}px)`;
+    outerDivRef.current.style.transform = `translateY(-${windowSize.current.height * index}px)`;
+  }
+
+
+  useEffect(() => {
+    ScrollMove(scrollIndex);
   }, [scrollIndex])
 
 
@@ -159,11 +167,6 @@ export default function MainContainer() {
         <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
         <SectionCasterNina ref={scrollRefs.current[4]} height={windowSize.current.height} />
         <Dots scrollIndex={scrollIndexLet} />
-        {/* <SectionHome ref={scrollRefs.current[0]} />
-        <SectionIntro ref={scrollRefs.current[1]} />
-        <SectionCasterEque ref={scrollRefs.current[2]} />
-        <SectionCasterAo ref={scrollRefs.current[3]} />
-        <SectionCasterNina ref={scrollRefs.current[4]} /> */}
       </ContentWrapper >
     </MainWrapper>
   )
