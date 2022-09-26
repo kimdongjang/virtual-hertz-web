@@ -40,38 +40,34 @@ export default function MainContainer() {
   };
 
   const outerDivRef = useRef();
-  const [scrollIndex, setScrollIndex] = useState(1);
-  const [translateValue, setTranslateValue] = useState(0);
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-  let cur = 1;
+  const windowSize = useRef(getWindowDimensions());
+  const [scrollIndex, setScrollIndex] = useState(0);
+  const [sectionHeight, setSectionHeight] = useState(getWindowDimensions().height);
 
 
-  let initialX = null;
+  let scrollIndexLet = 0;
+  let timeout = useRef();
   let initialY = null;
+
 
   // const windowSize = useWindowResize();
 
   const moveDown = () => {
-    console.log("move down")
-    console.log("scrollIndex : " + cur)
-    console.log("windowDimensions.height : " + windowDimensions.height)
-    if (DIVIDER_HEIGHT <= cur) return;
-    setTranslateValue((prev) => prev + windowDimensions.height);
-    // setScrollIndex((prev) => prev + 1);
-    cur += 1;
+    if (list.length - 1 <= scrollIndexLet) return;
+    scrollIndexLet += 1;
+    setScrollIndex(scrollIndexLet);
   };
 
   const moveUp = () => {
-    console.log("move Up")
-    console.log("scrollIndex : " + cur)
-    console.log("windowDimensions.height : " + windowDimensions.height)
-    if (cur <= 1) return;
-
-    setTranslateValue((prev) => prev - windowDimensions.height);
-    // setScrollIndex((prev) => prev - 1);
-    cur -= 1;
+    if (scrollIndexLet <= 0) return;
+    scrollIndexLet -= 1;
+    setScrollIndex(scrollIndexLet);
   };
+  useEffect(() => {
+    outerDivRef.current.style.transition = 'all 1s ease-in-out';
+    outerDivRef.current.style.transform = `translateY(-${windowSize.current.height * scrollIndex}px)`;
+  }, [scrollIndex])
+
 
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -82,140 +78,35 @@ export default function MainContainer() {
   }
 
 
-  // const ScrollDownThrottle = useMemo(
-  //   () =>
-  //     throttle(() => {
-  //       console.log('Scroll down');
-  //       if (cur < scrollRefs.current.length - 1) {
-  //         scrollRefs.current[++cur].current.scrollIntoView({ behavior: "smooth" });
-  //         setScrollIndex(cur)
-  //       }
-  //       // else {
-  //       //   scrollRefs.current[scrollRefs.current.length - 1].current.scrollIntoView();
-  //       //   setScrollIndex(cur)
-  //       // }
-  //       // if (!tabSelectorRef.current) return;
-  //       // const nextTabnavOn = window.scrollY > tabSelectorRef.current.offsetTop + 100;
-  //       // if (nextTabnavOn !== isTabnavOn) setIsTabnavOn(nextTabnavOn);
-  //     }, 300),
-  //   []
-  // );
 
-  // const ScrollUpThrottle = useMemo(
-  //   () =>
-  //     throttle(() => {
-  //       console.log('Scroll up');
-  //       if (cur > 0) {
-  //         scrollRefs.current[--cur].current.scrollIntoView({ behavior: "smooth" });
-  //         setScrollIndex(cur)
-  //       }
-  //     }, 300),
-  //   []
-  // );
-
-
-
-  // useEffect(() => {
-  //   const wheelHandler = (e) => {
-  //     e.preventDefault();
-  //     const { deltaY } = e;
-  //     const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
-  //     // const pageHeight = window.innerHeight; // 화면 세로길이, 100vh와 같습니다.
-
-
-  //     if (deltaY > 0) {
-  //       ScrollDownThrottle();
-
-  //     } else {
-  //       ScrollUpThrottle();
-  //     }
-  //   };
-
-  //   // modern Chrome requires { passive: false } when adding event
-  //   var supportsPassive = false;
-  //   try {
-  //     window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-  //       get: function () { supportsPassive = true; }
-  //     }));
-  //   } catch (e) { }
-  //   var wheelOpt = supportsPassive ? { passive: false } : false;
-
-  //   const initTouch = (e) => {
-  //     initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
-  //     initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
-  //   }
-  //   const swipeDirection = (e) => {
-  //     e.preventDefault();
-  //     e.stopImmediatePropagation();
-  //     e.stopPropagation();
-  //     if (initialX !== null && initialY !== null) {
-  //       const currentX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
-  //       const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
-
-  //       let diffX = initialX - currentX;
-  //       let diffY = initialY - currentY;
-  //       if (diffY < 0) {
-  //         // ScrollDownThrottle();
-  //       }
-  //       else if (diffY > 0) {
-  //         // ScrollUpThrottle();
-  //       }
-  //       console.log("swipe")
-  //       initialX = null;
-  //       initialY = null;
-  //     }
-
-
-  //   }
-
-  //   const touchHandler = (e) => {
-  //     e.preventDefault();
-  //     e.stopImmediatePropagation();
-  //     e.stopPropagation();
-  //     console.log(e.changedTouches[0].clientX)
-  //     console.log(e.changedTouches[0].clientY)
-  //     console.log(e.changedTouches[0])
-  //   };
-
-  //   const outerDivRefCurrent = outerDivRef.current;
-  //   outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-
-  //   // window.addEventListener('touchstart', (e) => { setTouch(true), { passive: false } });
-
-  //   window.addEventListener("touchstart", initTouch, { passive: false });
-  //   window.addEventListener('touchmove', swipeDirection, { passive: false });
-  //   window.addEventListener("touchend", touchHandler, { passive: false });
-  //   // window.addEventListener('touchend', (e) => { setTouch(false), { passive: false } });
-  //   return () => {
-  //     outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
-  //     window.removeEventListener('touchmove', touchHandler);
-  //   };
-  // }, []);
   useEffect(() => {
-
-    const wheelHandler = (e) => {
-      e.preventDefault();
-      setWindowDimensions(getWindowDimensions());
-      const { deltaY } = e;
-      console.log(deltaY)
-      if (deltaY < 0) {
-        moveUp()
-      }
-      else if (deltaY > 0) {
-        moveDown()
-      }
-
-    }
-
     const initTouch = (e) => {
-      initialX = `${e.touches ? e.touches[0].clientX : e.clientX}`;
       initialY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
     }
 
+    const wheelHandler = (e) => {
+      e.preventDefault();
+      clearTimeout(timeout.current);//이전 휠 이벤트 제거
+      timeout.current = setTimeout(function () {
+
+        windowSize.current = getWindowDimensions();
+        const { deltaY } = e;
+        if (deltaY < 0) {
+          moveUp()
+        }
+        else if (deltaY > 0) {
+          moveDown()
+        }
+
+      }, 200);
+
+    }
+
+
     const swipeDirection = (e) => {
       e.preventDefault();
-      setWindowDimensions(getWindowDimensions());
-      if (initialX !== null && initialY !== null) {
+      windowSize.current = getWindowDimensions();
+      if (initialY !== null) {
         const currentY = `${e.touches ? e.touches[0].clientY : e.clientY}`;
 
         let diffY = initialY - currentY;
@@ -226,31 +117,29 @@ export default function MainContainer() {
         else if (diffY > 0) {
           moveDown()
         }
-        initialX = null;
         initialY = null;
       }
     }
 
+    const handleResize = () => {
+      windowSize.current = getWindowDimensions();
+      console.log("resize")
+      setSectionHeight(windowSize.current)
+    }
+
+    var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
     const outerDivRefCurrent = outerDivRef.current;
-    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-
+    window.addEventListener(wheelEvent, wheelHandler, { passive: false });
+    window.addEventListener('resize', handleResize);
     window.addEventListener("touchstart", initTouch, { passive: false });
     window.addEventListener('touchmove', swipeDirection, { passive: false });
     return () => {
-      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener(wheelEvent, wheelHandler, { passive: false });
       window.removeEventListener('touchmove', swipeDirection, { passive: false });
     }
-
   }, [])
-
-  useEffect(() => {
-    outerDivRef.current.style.transition = 'all 0.5s ease-in-out';
-    outerDivRef.current.style.transform = `translateY(-${translateValue}px)`;
-    console.log("translateValue : " + translateValue)
-    console.log("scrollIndex : " + cur)
-
-  }, [translateValue])
 
   // useEffect(() => {
   //   console.log("=== update window! === ")
@@ -264,12 +153,12 @@ export default function MainContainer() {
         <Navbar list={list} scrollTo={scrollTo} />
       </NavbarWrapper>
       <ContentWrapper ref={outerDivRef}>
-        <SectionHome ref={scrollRefs.current[0]} />
-        <SectionIntro ref={scrollRefs.current[1]} />
-        <SectionCasterEque ref={scrollRefs.current[2]} />
-        <SectionCasterAo ref={scrollRefs.current[3]} />
-        <SectionCasterNina ref={scrollRefs.current[4]} />
-        <Dots scrollIndex={cur} />
+        <SectionHome ref={scrollRefs.current[0]} height={windowSize.current.height} />
+        <SectionIntro ref={scrollRefs.current[1]} height={windowSize.current.height} />
+        <SectionCasterEque ref={scrollRefs.current[2]} height={windowSize.current.height} />
+        <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
+        <SectionCasterNina ref={scrollRefs.current[4]} height={windowSize.current.height} />
+        <Dots scrollIndex={scrollIndexLet} />
         {/* <SectionHome ref={scrollRefs.current[0]} />
         <SectionIntro ref={scrollRefs.current[1]} />
         <SectionCasterEque ref={scrollRefs.current[2]} />

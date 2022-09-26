@@ -15,9 +15,9 @@ const Movie = tw.video`
     h-screen w-full
 `
 
-const SectionHome = forwardRef((prpos, ref) => {
+const SectionHome = forwardRef((props, ref) => {
     return (
-        <BackMovieWrapper ref={ref} className="backgroundPattern  w-full h-screen bg-opacity-60">
+        <BackMovieWrapper ref={ref} className="backgroundPattern  w-full h-screen bg-opacity-60" style={{ height: props.height }}>
             <BackMovie>
                 <Movie src="./video/eque_pv.mp4" muted loop playsInline autoPlay />
 

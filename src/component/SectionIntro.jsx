@@ -84,7 +84,7 @@ const IntroAoCardText = tw.div`
 
 
 
-const SectionIntro = forwardRef((prpos, ref) => {
+const SectionIntro = forwardRef((props, ref) => {
     const [windowHeight, setWindowHeight] = useState();
     const [windowWidth, setWindowWidth] = useState();
     const [youtubeOption, setYoutubeOption] = useState({});
@@ -143,7 +143,7 @@ const SectionIntro = forwardRef((prpos, ref) => {
 
 
     return (
-        <IntroWrpper ref={ref} >
+        <IntroWrpper ref={ref} style={{ height: props.height }}>
             {/* <IntroTop>
                 <h1>Ofiicial Music Video</h1>
                 <div>

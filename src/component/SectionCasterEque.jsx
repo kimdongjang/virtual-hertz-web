@@ -5,23 +5,24 @@ import { FaArrowRight } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    h-screen flex  items-center justify-center 
+    flex  items-center justify-center 
     flex-col md:flex-row
+    bg-red-50
+`
+
+const AudioPlayerWrapper = tw.div`
+    max-w-xs md:max-w-sm m-2
 `
 
 const CasterImageWrapper = tw.div`
     
 `
-const AudioPlayerWrapper = tw.div`
-    max-w-xs md:max-w-sm m-2
-`
-
 const CasterImage = tw.img`
-    h-[410px] pt-12
+    pt-12  lg:p-8
 `
 
 const CasterSectionInner = tw.div`
-    flex flex-col m-2 max-h-max
+    lg:max-w-[340px]
 `
 const CasterSectionHeaderDeco = tw.div`
     w-1 h-7
@@ -37,7 +38,7 @@ const CasterSectionHeader = tw.div`
 `
 
 const CasterInnerText = tw.p`
-    font-NotoSansKR font-light
+    font-NotoSansKR font-medium
     text-[6px] sm:text-sm md:text-md lg:text-lg 
     max-w-md
     p-2
@@ -53,11 +54,11 @@ const CasterTwitterLink = tw.div`
 
 
 
-const SectionCasterEque = forwardRef((prpos, ref) => {
+const SectionCasterEque = forwardRef((props, ref) => {
     return (
-        <SectionWrapper ref={ref}>
+        <SectionWrapper ref={ref} style={{ height: props.height }}>
             <CasterImageWrapper>
-                <CasterImage src="./images/caster/eque2.jpg" />
+                <CasterImage src="./images/caster/eque2.jpg" style={{ height: props.height * 0.7 }} />
             </CasterImageWrapper>
             <CasterSectionInner>
                 <div className="caster-section__title">
@@ -70,18 +71,6 @@ const SectionCasterEque = forwardRef((prpos, ref) => {
                     공지는 트위터에서! (@VHZ_EQue) <br />
                     Contact Us - v.hzent@gmail.com
                 </CasterInnerText>
-                {/* <EqueCasterIntroduce>
-                    어느 공장에서 만들어진 스피커!&nbsp;
-                    <EqueCasterIntroduceHighlight>요상한 모자를 쓴 고양의 마법</EqueCasterIntroduceHighlight>으로&nbsp;
-                    <EqueCasterIntroduceHighlight> 사람</EqueCasterIntroduceHighlight>이 되었다!<br />
-                    폐기장 근처 놀이터에서 버스킹을 하다가&nbsp;
-                    <EqueCasterIntroduceHighlight>길거리 캐스팅</EqueCasterIntroduceHighlight>을 당해<br />
-                    <EqueCasterIntroduceHighlight>버츄얼 헤르츠</EqueCasterIntroduceHighlight>에 합류하게 된다!
-                </EqueCasterIntroduce> */}
-                {/* <AudioPlayerWrapper>
-                    <ReactAudioPlayer src="./audio/eque.mp3" controls
-                    />
-                </AudioPlayerWrapper> */}
                 <CasterTwitterLink className="hover:cursor-pointer"
                     onClick={() => window.location.href = "https://www.twitch.tv/e_que_"} >
                     방송채널 바로가기

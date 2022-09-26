@@ -5,23 +5,24 @@ import { FaArrowRight } from "react-icons/fa"
 import tw from "tailwind-styled-components";
 
 const SectionWrapper = tw.div`
-    h-screen flex  items-center justify-center 
+    flex  items-center justify-center 
     flex-col md:flex-row
+    bg-blue-50
+`
+
+const AudioPlayerWrapper = tw.div`
+    max-w-xs md:max-w-sm m-2
 `
 
 const CasterImageWrapper = tw.div`
     
 `
-const AudioPlayerWrapper = tw.div`
-    max-w-xs md:max-w-sm m-2
-`
-
 const CasterImage = tw.img`
-    h-[410px] pt-12
+pt-12 lg:p-8
 `
 
 const CasterSectionInner = tw.div`
-    flex flex-col m-2 max-h-max
+    flex flex-col m-2 max-h-max lg:max-w-[340px]
 `
 const CasterSectionHeaderDeco = tw.div`
     w-1 h-7
@@ -37,7 +38,7 @@ const CasterSectionHeader = tw.div`
 `
 
 const CasterInnerText = tw.p`
-    font-NotoSansKR font-light
+    font-NotoSansKR font-medium
     text-[6px] sm:text-sm md:text-md lg:text-lg 
     max-w-md
     p-2
@@ -54,11 +55,11 @@ const CasterTwitterLink = tw.div`
 
 
 
-const SectionCasterAo = forwardRef((prpos, ref) => {
+const SectionCasterAo = forwardRef((props, ref) => {
     return (
-        <SectionWrapper ref={ref}>
+        <SectionWrapper ref={ref} style={{ height: props.height }}>
             <CasterImageWrapper>
-                <CasterImage src="./images/caster/ao2.jpg" />
+                <CasterImage src="./images/caster/ao2.jpg" style={{ height: props.height * 0.7 }} />
             </CasterImageWrapper>
             <CasterSectionInner>
                 <div className="caster-section__title">

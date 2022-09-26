@@ -7,20 +7,17 @@ import tw from "tailwind-styled-components";
 const SectionWrapper = tw.div`
     flex h-screen justify-center  items-center snap-y
     flex-col md:flex-row
+    bg-green-50
 `
 
 const CasterImageWrapper = tw.div`
-h-2/3
 `
 
-const AudioPlayerWrapper = tw.div`
-    max-w-xs md:max-w-sm m-2
-`
 const CasterImage = tw.img`
-    h-full p-8
+pt-12 lg:p-8
 `
 const CasterSectionInner = tw.div`
-    flex flex-col justify-center 
+    flex flex-col justify-center lg:max-w-[340px]
 `
 const CasterSectionHeader = tw.div`
     flex justify-center items-center
@@ -37,7 +34,7 @@ const CasterInnerText = tw.p`
 const CasterTwitterLink = tw.div`
     flex justify-between items-center
     border-2 border-solid border-gray-700  
-    w-48 md:w-96
+    w-48 md:w-[300px]
     p-2 my-1 mx-4 lg:p-4 lg:my-2
     text-sm md:text-md  lg:text-lg
     font-GmarketSans 
@@ -49,11 +46,11 @@ const CasterTwitterLink = tw.div`
 
 
 
-const SectionCasterNina = forwardRef((prpos, ref) => {
+const SectionCasterNina = forwardRef((props, ref) => {
     return (
-        <SectionWrapper ref={ref}>
+        <SectionWrapper ref={ref} style={{ height: props.height }}>
             <CasterImageWrapper>
-                <CasterImage src="./images/caster/nina2.jpg" />
+                <CasterImage src="./images/caster/nina2.jpg" style={{ height: props.height * 0.7 }} />
             </CasterImageWrapper>
             <CasterSectionInner>
                 <div className="caster-section__title">
