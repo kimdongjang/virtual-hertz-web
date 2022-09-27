@@ -130,11 +130,14 @@ export default function MainContainer() {
       }
     }
 
+    
     const handleResize = () => {
       windowSize.current = getWindowDimensions();
-      console.log("resize")
       setSectionHeight(windowSize.current)
+      outerDivRef.current.style.transition = 'all 0s ease-in-out';
+      outerDivRef.current.style.transform = `translateY(-${windowSize.current.height * scrollIndexLet}px)`;
     }
+    
 
     var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
