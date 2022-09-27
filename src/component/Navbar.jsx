@@ -10,7 +10,7 @@ import tw from "tailwind-styled-components";
 const NavbarWrapper = tw.nav`
   absolute top-0 right-0 h-auto w-full   
   flex items-center
-  bg-gray-200
+  bg-gray-200 z-[3]
 `
 const NavbarLogo = tw.div`
   w-full
