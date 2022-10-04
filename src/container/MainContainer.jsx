@@ -164,7 +164,7 @@ export default function MainContainer() {
       <ContentWrapper ref={outerDivRef}>
         <SectionHome ref={scrollRefs.current[0]} height={windowSize.current.height} />
         <SectionIntro ref={scrollRefs.current[1]} height={windowSize.current.height} />
-        <SectionCasterEque ref={scrollRefs.current[2]} height={windowSize.current.height} />
+        <SectionCasterEque ref={scrollRefs.current[2]} height={windowSize.current.height} width={windowSize.current.width} />
         <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
         <SectionCasterNina ref={scrollRefs.current[4]} height={windowSize.current.height} />
         <Dots scrollIndex={scrollIndexLet} />

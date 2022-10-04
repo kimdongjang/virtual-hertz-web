@@ -18,7 +18,7 @@ const CasterImageWrapper = tw.div`
     
 `
 const CasterImage = tw.img`
-pt-12 lg:p-8
+    pt-12 lg:p-8
 `
 
 const CasterSectionInner = tw.div`

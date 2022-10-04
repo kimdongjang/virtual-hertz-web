@@ -3,9 +3,10 @@ import ReactAudioPlayer from "react-audio-player";
 import { FaArrowRight } from "react-icons/fa"
 
 import tw from "tailwind-styled-components";
+import Polygon from "./svg/polygon";
 
 const SectionWrapper = tw.div`
-    flex  items-center justify-center 
+    flex items-center justify-center 
     flex-col md:flex-row
     bg-red-50
 `
@@ -19,6 +20,10 @@ const CasterImageWrapper = tw.div`
 `
 const CasterImage = tw.img`
     pt-12  lg:p-8
+`
+
+const SvgWrapper = tw.svg`
+    absolute h-full w-full
 `
 
 const CasterSectionInner = tw.div`
@@ -56,33 +61,38 @@ const CasterTwitterLink = tw.div`
 
 const SectionCasterEque = forwardRef((props, ref) => {
     return (
-        <SectionWrapper ref={ref} style={{ height: props.height }}>
-            <CasterImageWrapper>
-                <CasterImage src="./images/caster/eque2.jpg" style={{ height: props.height * 0.7 }} />
-            </CasterImageWrapper>
-            <CasterSectionInner>
-                <div className="caster-section__title">
-                    <CasterSectionHeaderDeco style={{ background: '#FCCAD7' }} />
-                    <CasterSectionHeader>Eque</CasterSectionHeader>
-                </div>
-                <CasterInnerText>
-                    첫 번째 프로젝트! 이큐 에요! ٩(๑˙꒳˙๑)۶♥ <br />
-                    매주 수,금,토,일 오후 8시 20분 뱅온♥ <br />
-                    공지는 트위터에서! (@VHZ_EQue) <br />
-                    Contact Us - v.hzent@gmail.com
-                </CasterInnerText>
-                <CasterTwitterLink className="hover:cursor-pointer"
-                    onClick={() => window.location.href = "https://www.twitch.tv/e_que_"} >
-                    방송채널 바로가기
-                    <FaArrowRight color="#FCA5A5" />
-                </CasterTwitterLink>
-                <CasterTwitterLink className="hover:cursor-pointer"
-                    onClick={() => window.location.href = "https://twitter.com/VHZ_EQue"} >
-                    트위터 바로가기
-                    <FaArrowRight color="#FCA5A5" />
-                </CasterTwitterLink>
-            </CasterSectionInner>
-        </SectionWrapper>
+        <div>
+            <SvgWrapper>
+                <Polygon height={props.height} width={props.width} />
+            </SvgWrapper>
+            <SectionWrapper ref={ref} style={{ height: props.height }}>
+                <CasterImageWrapper>
+                    <CasterImage src="./images/caster/eque2.jpg" style={{ height: props.height * 0.7 }} />
+                </CasterImageWrapper>
+                <CasterSectionInner>
+                    <div className="caster-section__title">
+                        <CasterSectionHeaderDeco style={{ background: '#FCCAD7' }} />
+                        <CasterSectionHeader>Eque</CasterSectionHeader>
+                    </div>
+                    <CasterInnerText>
+                        첫 번째 프로젝트! 이큐 에요! ٩(๑˙꒳˙๑)۶♥ <br />
+                        매주 수,금,토,일 오후 8시 20분 뱅온♥ <br />
+                        공지는 트위터에서! (@VHZ_EQue) <br />
+                        Contact Us - v.hzent@gmail.com
+                    </CasterInnerText>
+                    <CasterTwitterLink className="hover:cursor-pointer"
+                        onClick={() => window.location.href = "https://www.twitch.tv/e_que_"} >
+                        방송채널 바로가기
+                        <FaArrowRight color="#FCA5A5" />
+                    </CasterTwitterLink>
+                    <CasterTwitterLink className="hover:cursor-pointer"
+                        onClick={() => window.location.href = "https://twitter.com/VHZ_EQue"} >
+                        트위터 바로가기
+                        <FaArrowRight color="#FCA5A5" />
+                    </CasterTwitterLink>
+                </CasterSectionInner>
+            </SectionWrapper>
+        </div>
     )
 }
 )
