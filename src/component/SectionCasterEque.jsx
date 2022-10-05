@@ -3,12 +3,11 @@ import ReactAudioPlayer from "react-audio-player";
 import { FaArrowRight } from "react-icons/fa"
 
 import tw from "tailwind-styled-components";
-import Polygon from "./svg/polygon";
+import PolygonContainer from "./svg/polygonContainer";
 
 const SectionWrapper = tw.div`
     flex items-center justify-center 
     flex-col md:flex-row
-    bg-red-50
 `
 
 const AudioPlayerWrapper = tw.div`
@@ -60,12 +59,27 @@ const CasterTwitterLink = tw.div`
 
 
 const SectionCasterEque = forwardRef((props, ref) => {
+    const stylePolygon = {
+        fill: "#f43f5e",
+        opacity: 0.5,
+    }
+    const topTriangle = `0,0 ${props.width},0 ${props.width},${props.height / 2}`
+    const bottomTriangle = `0,${props.height} ${props.width},${props.height} ${props.width},${props.height / 2}`
+    console.log(topTriangle)
     return (
         <div>
             <SvgWrapper>
-                <Polygon height={props.height} width={props.width} />
+                <svg>
+                    <polygon points={topTriangle} style={stylePolygon} />
+                    <polygon points={bottomTriangle} style={stylePolygon} />
+                </svg>
+                <PolygonContainer height={props.height} width={props.width} />
             </SvgWrapper>
             <SectionWrapper ref={ref} style={{ height: props.height }}>
+
+            </SectionWrapper>
+
+            {/* <SectionWrapper ref={ref} style={{ height: props.height }}>
                 <CasterImageWrapper>
                     <CasterImage src="./images/caster/eque2.jpg" style={{ height: props.height * 0.7 }} />
                 </CasterImageWrapper>
@@ -91,7 +105,7 @@ const SectionCasterEque = forwardRef((props, ref) => {
                         <FaArrowRight color="#FCA5A5" />
                     </CasterTwitterLink>
                 </CasterSectionInner>
-            </SectionWrapper>
+            </SectionWrapper> */}
         </div>
     )
 }

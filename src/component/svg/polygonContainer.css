@@ -1,0 +1,4 @@
+.point1__animation {
+	transform: translate(300px, 300px);
+	transition: all 2s;
+}
