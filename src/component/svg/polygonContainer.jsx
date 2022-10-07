@@ -32,10 +32,27 @@ export default function PolygonContainer({ height, width }) {
         (width / 1.03) + "," + (height / 1.05) + " " +
         (width / 1.4) + "," + (height / 1.2);
     return <svg>
-        <PolygonTriangle point={pointP1} style={styleP1} distance={"50 170"} />
-        <PolygonTriangle point={pointP2} style={styleP1} distance={"-360 10"} />
-        <PolygonTriangle point={pointP3} style={styleP1} distance={"-100 80"} />
-        <PolygonTriangle point={pointP4} style={styleP1} distance={"-100 60"} />
+        {/* <PolygonTriangle point={pointP1} style={styleP1} from={"0 600 300"} distance={"360 -150 -570"} />
+        <PolygonTriangle point={pointP2} style={styleP1} from={"0 60 70"} distance={"360 60 70"} />
+        <PolygonTriangle point={pointP3} style={styleP1} from={"0 60 70"} distance={"360 60 70"} />
+        <PolygonTriangle point={pointP4} style={styleP1} from={"0 60 70"} distance={"360 60 70"} />
+        <PolygonTriangle point={pointP5} style={styleP1} from={"0 60 70"} distance={"360 60 70"} />
+        <PolygonTriangle point={pointP4} style={styleP1} from={"0 60 70"} distance={"360 60 70"} /> */}
+
+
+        {/* <PolygonTriangle point={pointP1} style={styleP1} from={"600 300"} distance={"-150 -570"} />
+        <PolygonTriangle point={pointP2} style={styleP1} from={"500 100"} distance={"-360 -210"} />
+        <PolygonTriangle point={pointP3} style={styleP1} from={"300 700"} distance={"-100 -300"} />
+        <PolygonTriangle point={pointP4} style={styleP1} from={"100 900"} distance={"-300 -300"} />
+        <PolygonTriangle point={pointP5} style={styleP1} from={"100 800"} distance={"-600 -700"} />
+        <PolygonTriangle point={pointP4} style={styleP1} from={"0 0"} distance={"-100 800"} /> */}
+
+
+        <PolygonTriangle point={pointP1} style={styleP1} distance={"-150 -170"} />
+        <PolygonTriangle point={pointP2} style={styleP1} distance={"360 -210"} />
+        <PolygonTriangle point={pointP3} style={styleP1} distance={"-100 -100"} />
+        <PolygonTriangle point={pointP4} style={styleP1} distance={"300 -90"} />
+
         <PolygonTriangle point={pointP5} style={styleP1} distance={"-150 -30"} />
         <PolygonTriangle point={pointP6} style={styleP1} distance={"-90 -200"} />
         <PolygonTriangle point={pointP7} style={styleP1} distance={"-100 -50"} />

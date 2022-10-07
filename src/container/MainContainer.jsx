@@ -130,14 +130,14 @@ export default function MainContainer() {
       }
     }
 
-    
+
     const handleResize = () => {
       windowSize.current = getWindowDimensions();
       setSectionHeight(windowSize.current)
       outerDivRef.current.style.transition = 'all 0s ease-in-out';
       outerDivRef.current.style.transform = `translateY(-${windowSize.current.height * scrollIndexLet}px)`;
     }
-    
+
 
     var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
@@ -165,7 +165,7 @@ export default function MainContainer() {
         <Navbar list={list} scrollTo={scrollTo} />
       </NavbarWrapper>
       <ContentWrapper ref={outerDivRef}>
-        <SectionHome ref={scrollRefs.current[0]} height={windowSize.current.height} />
+        <SectionHome ref={scrollRefs.current[0]} height={windowSize.current.height} width={windowSize.current.width} />
         <SectionIntro ref={scrollRefs.current[1]} height={windowSize.current.height} />
         <SectionCasterEque ref={scrollRefs.current[2]} height={windowSize.current.height} width={windowSize.current.width} />
         <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
