@@ -1,20 +1,21 @@
 
 import React, { createRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Navbar from "../component/Navbar";
-import SectionCaster from "../component/SectionCaster";
-import SectionHome from "../component/SectionHome";
-import SectionIntro from "../component/SectionIntro";
+import SectionCaster from "../component/mainpage/SectionCaster";
+import SectionHome from "../component/mainpage/SectionHome";
+import SectionIntro from "../component/mainpage/SectionIntro";
 import './mainContainer.css'
 
 import tw from "tailwind-styled-components";
 import Dots from "../component/Dots";
-import SectionCasterEque from "../component/SectionCasterEque";
-import SectionCasterAo from "../component/SectionCasterAo";
-import SectionCasterNina from "../component/SectionCasterNina";
+import SectionCasterEque from "../component/mainpage/SectionCasterEque";
+import SectionCasterAo from "../component/mainpage/SectionCasterAo";
+import SectionCasterNina from "../component/mainpage/SectionCasterNina";
 import useWindowResize from "../hooks/useWindowResize";
 
 import { throttle } from 'lodash';
-import SectionContactus from "../component/SectionContactus";
+import SectionContactus from "../component/mainpage/SectionContactus";
+import HorizonSlider from "../component/HorizonSlider";
 
 
 const MainWrapper = tw.div`
@@ -166,6 +167,7 @@ export default function MainContainer() {
       </NavbarWrapper>
       <ContentWrapper ref={outerDivRef}>
         <SectionHome ref={scrollRefs.current[0]} height={windowSize.current.height} width={windowSize.current.width} />
+        {/* <HorizonSlider ref={scrollRefs.current[1]} height={windowSize.current.height} width={windowSize.current.width} /> */}
         <SectionIntro ref={scrollRefs.current[1]} height={windowSize.current.height} />
         <SectionCasterEque ref={scrollRefs.current[2]} height={windowSize.current.height} width={windowSize.current.width} />
         <SectionCasterAo ref={scrollRefs.current[3]} height={windowSize.current.height} />
