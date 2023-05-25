@@ -25,7 +25,7 @@ const Movie = tw.video`
 
 const SectionHome = forwardRef((props, ref) => {
     return (
-        <BackMovieWrapper ref={ref} className="backgroundPattern  w-full h-screen bg-opacity-60" style={{ height: props.height }}>
+        <BackMovieWrapper ref={ref} className="backgroundPattern  w-full h-screen bg-opacity-60 " style={{ height: props.height }}>
             <SvgWrapper>
                 <svg></svg>
                 <PolygonContainer height={props.height} width={props.width} />
